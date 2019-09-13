@@ -35,6 +35,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.SqlXml" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -64,6 +66,7 @@
     <Compile Include="doctors.Designer.cs">
       <DependentUpon>doctors.cs</DependentUpon>
     </Compile>
+    <Compile Include="HelperClass.cs" />
     <Compile Include="home.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,11 +85,11 @@
     <Compile Include="medicines.Designer.cs">
       <DependentUpon>medicines.cs</DependentUpon>
     </Compile>
-    <Compile Include="Staffs.cs">
+    <Compile Include="cabin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Staffs.Designer.cs">
-      <DependentUpon>Staffs.cs</DependentUpon>
+    <Compile Include="cabin.Designer.cs">
+      <DependentUpon>cabin.cs</DependentUpon>
     </Compile>
     <Compile Include="patients.cs">
       <SubType>Form</SubType>
@@ -108,12 +111,15 @@
     <Compile Include="search.Designer.cs">
       <DependentUpon>search.cs</DependentUpon>
     </Compile>
-    <Compile Include="cabins.cs">
+    <Compile Include="staff.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="cabins.Designer.cs">
-      <DependentUpon>cabins.cs</DependentUpon>
+    <Compile Include="staff.Designer.cs">
+      <DependentUpon>staff.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="staff.resx">
+      <DependentUpon>staff.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="dashboard.resx">
       <DependentUpon>dashboard.cs</DependentUpon>
     </EmbeddedResource>
@@ -141,8 +147,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Staffs.resx">
-      <DependentUpon>Staffs.cs</DependentUpon>
+    <EmbeddedResource Include="sales.resx">
+      <DependentUpon>sales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="cabin.resx">
+      <DependentUpon>cabin.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -156,6 +165,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Business Logic Layer\Business Logic Layer.csproj">
+      <Project>{7f1ae47d-2c4d-497b-855b-a5eb9594857a}</Project>
+      <Name>Business Logic Layer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Data Access Layer\Data Access Layer.csproj">
+      <Project>{fcbf6605-6d94-4ea1-b022-76b9234da3e0}</Project>
+      <Name>Data Access Layer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

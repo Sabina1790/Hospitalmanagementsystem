@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Hospital_Management_System
@@ -27,6 +20,36 @@ namespace Hospital_Management_System
         {
             doctors doc = new doctors();
             doc.Show();
+        }
+
+        private void SalesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            sales sal = new sales();
+            sal.Show();
+        }
+
+        private void CabinToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            cabin cab = new cabin();
+            cab.Show();
+        }
+
+        private void StaffToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            staff sta = new staff();
+            sta.Show();
+        }
+
+        private void BillingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            billing bil = new billing();
+            bil.Show();
+        }
+
+        private void MedicinesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            medicines med = new medicines();
+            med.Show();
         }
     }
 }

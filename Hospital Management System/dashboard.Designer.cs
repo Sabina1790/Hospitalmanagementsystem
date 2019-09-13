@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dashboard));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.paToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.patientsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,14 +47,24 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.panel1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.menuStrip1);
-            this.panel1.Location = new System.Drawing.Point(2, 2);
+            this.panel1.Location = new System.Drawing.Point(2, 1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1427, 798);
+            this.panel1.Size = new System.Drawing.Size(1363, 747);
             this.panel1.TabIndex = 0;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(1282, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "Log Out";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // menuStrip1
             // 
@@ -69,7 +80,7 @@
             this.searchToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1427, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1363, 24);
             this.menuStrip1.TabIndex = 10;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -98,30 +109,35 @@
             this.medicinesToolStripMenuItem.Name = "medicinesToolStripMenuItem";
             this.medicinesToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
             this.medicinesToolStripMenuItem.Text = "Medicines";
+            this.medicinesToolStripMenuItem.Click += new System.EventHandler(this.MedicinesToolStripMenuItem_Click);
             // 
             // salesToolStripMenuItem
             // 
             this.salesToolStripMenuItem.Name = "salesToolStripMenuItem";
             this.salesToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
             this.salesToolStripMenuItem.Text = "Sales";
+            this.salesToolStripMenuItem.Click += new System.EventHandler(this.SalesToolStripMenuItem_Click);
             // 
             // cabinToolStripMenuItem
             // 
             this.cabinToolStripMenuItem.Name = "cabinToolStripMenuItem";
             this.cabinToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.cabinToolStripMenuItem.Text = "Cabin";
+            this.cabinToolStripMenuItem.Click += new System.EventHandler(this.CabinToolStripMenuItem_Click);
             // 
             // staffToolStripMenuItem
             // 
             this.staffToolStripMenuItem.Name = "staffToolStripMenuItem";
             this.staffToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
             this.staffToolStripMenuItem.Text = "Staff";
+            this.staffToolStripMenuItem.Click += new System.EventHandler(this.StaffToolStripMenuItem_Click);
             // 
             // billingToolStripMenuItem
             // 
             this.billingToolStripMenuItem.Name = "billingToolStripMenuItem";
             this.billingToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this.billingToolStripMenuItem.Text = "Billing";
+            this.billingToolStripMenuItem.Click += new System.EventHandler(this.BillingToolStripMenuItem_Click);
             // 
             // searchToolStripMenuItem
             // 
@@ -160,5 +176,6 @@
         private System.Windows.Forms.ToolStripMenuItem staffToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem billingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem searchToolStripMenuItem;
+        private System.Windows.Forms.Button button1;
     }
 }

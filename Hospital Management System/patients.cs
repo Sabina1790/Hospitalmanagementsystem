@@ -7,6 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Data_Access_Layer;
+using Business_Logic_Layer;
+using Microsoft.VisualBasic;
+using System.Text.RegularExpressions;
+using System.IO;
 
 namespace Hospital_Management_System
 {
@@ -15,6 +20,281 @@ namespace Hospital_Management_System
         public patients()
         {
             InitializeComponent();
+        }
+
+        PatientClass pc = new PatientClass();
+        BusinessLogicLayer blc = new BusinessLogicLayer();
+        HelperClass hc = new HelperClass();
+        public int PatientId;
+
+        private void Patients_Load(object sender, System.EventArgs e)
+        {
+            dgvpatientsdetails.DataSource = pc.GetAllPatients();
+        }
+
+        private void Btnadd_Click(object sender, EventArgs e)
+        {
+            if (txtvisitorno.Text == "")
+            {
+                MessageBox.Show("Provide Visitor No: Full information required");
+            }
+            if (txttitle.Text == "")
+            {
+                MessageBox.Show("Provide Title: Full information required");
+            }
+            if (txtpatientname.Text == "")
+            {
+                MessageBox.Show("Provide Patient Name: Full information required");
+            }
+            if (txtaddress.Text == "")
+            {
+                MessageBox.Show("Provide Address: Full information required");
+            }
+            if (txtcontactno.Text == "")
+            {
+                MessageBox.Show("Provide Contact No: Full information required");
+            }
+            if (dtpdob.Text == "")
+            {
+                MessageBox.Show("Provide DOB: Full information required");
+            }
+            if (cmbgender.SelectedIndex == -1)
+            {
+                MessageBox.Show("Provide Gender: Full information required");
+            }
+            if (cmbpatienttype.SelectedIndex == -1)
+            {
+                MessageBox.Show("Provide Patient Type: Full information required");
+            }
+            if (cmbpatienttype.SelectedIndex == -1)
+            {
+                MessageBox.Show("Provide Maritial Status: Full information required");
+            }
+            if (cmbbloodgroup.SelectedIndex == -1)
+            {
+                MessageBox.Show("Provide Blood Group: Full information required");
+            }
+            if (btnbrowse.Text == "")
+            {
+                MessageBox.Show("Provide Image: Full information required");
+            }
+            else if (DublicatePatient() == true)
+            {
+                MessageBox.Show("Patient with same name already exists");
+                txtpatientname.Clear();
+                txtpatientname.Focus();
+            }
+            { CreatePatient(); }
+        }
+
+        //create user
+        private void CreatePatient()
+        {
+            //try catch exception
+            try
+            {
+                bool res = blc.PatientTable(0,
+                   Convert.ToInt32(txtvisitorno.Text),
+                   txttitle.Text,
+                   txtpatientname.Text,
+                   txtaddress.Text,
+                   Convert.ToInt32(txtcontactno.Text),
+                   Convert.ToDateTime(dtpdob.Text),
+                   cmbgender.Text,
+                   cmbpatienttype.Text,
+                   cmbmaritalstatus.Text,
+                   cmbbloodgroup.Text,
+                   HelperClass.imageConverter(pictureBox1),
+                       1);
+                if (res == true)
+                {
+                    //display message of adding memeber in database
+                    MessageBox.Show("Success to Add patient");
+                    dgvpatientsdetails.DataSource = pc.GetAllPatients();
+                    HelperClass.makeFieldsBlank(grpContainer);
+                    pictureBox1.Image = null;
+                }
+                else
+                {
+                    //display error message as data cannot be stored
+                    MessageBox.Show("Couldn't Add selected patient");
+                    dgvpatientsdetails.DataSource = pc.GetAllPatients();
+                    HelperClass.makeFieldsBlank(grpContainer);
+                    pictureBox1.Image = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+
+        //helps in data store as if users have same information
+        public bool DublicatePatient()
+        {
+            int x = 0;
+            try
+            {
+
+                for (int i = 0; i < dgvpatientsdetails.Rows.Count; i++)
+                {
+                    if (txtpatientname.Text == dgvpatientsdetails.Rows[i].Cells["PatientName"].Value.ToString())
+                        x = 1;
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+            if (x == 1)
+                return true;
+            else
+                return false;
+
+        }
+
+        private void Dgvpatientsdetails_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                PatientId = Convert.ToInt32(dgvpatientsdetails.SelectedRows[0].Cells["PatientId"].Value.ToString());
+                txtvisitorno.Text = dgvpatientsdetails.SelectedRows[0].Cells["VisitorNo"].Value.ToString();
+                txttitle.Text = dgvpatientsdetails.SelectedRows[0].Cells["Title"].Value.ToString();
+                txtpatientname.Text = dgvpatientsdetails.SelectedRows[0].Cells["PatientName"].Value.ToString();
+                txtaddress.Text = dgvpatientsdetails.SelectedRows[0].Cells["Address"].Value.ToString();
+                txtcontactno.Text = dgvpatientsdetails.SelectedRows[0].Cells["ContactNo"].Value.ToString();
+                dtpdob.Text = dgvpatientsdetails.SelectedRows[0].Cells["DOB"].Value.ToString();
+                cmbgender.Text = dgvpatientsdetails.SelectedRows[0].Cells["Gender"].Value.ToString();
+                cmbpatienttype.Text = dgvpatientsdetails.SelectedRows[0].Cells["PatientType"].Value.ToString();
+                cmbmaritalstatus.Text = dgvpatientsdetails.SelectedRows[0].Cells["Maritialstatus"].Value.ToString();
+                cmbbloodgroup.Text = dgvpatientsdetails.SelectedRows[0].Cells["BloodGroup"].Value.ToString();
+                MemoryStream memoryStream = new MemoryStream((byte[])dgvpatientsdetails.SelectedRows[0].Cells["Image"].Value);
+                pictureBox1.Image = Image.FromStream(memoryStream);
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void Btnbrowse_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                try
+                {
+                    OpenFileDialog ofd = new OpenFileDialog();
+                    if (ofd.ShowDialog() == DialogResult.OK)
+                    {
+                        pictureBox1.Image = Image.FromFile(ofd.FileName);
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please select a patient picture");
+                    }
+
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void Btnupdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                bool res = blc.PatientTable(PatientId,
+                   Convert.ToInt32(txtvisitorno.Text),
+                   txttitle.Text,
+                   txtpatientname.Text,
+                   txtaddress.Text,
+                   Convert.ToInt32(txtcontactno.Text),
+                   Convert.ToDateTime(dtpdob.Text),
+                   cmbgender.Text,
+                   cmbpatienttype.Text,
+                   cmbmaritalstatus.Text,
+                   cmbbloodgroup.Text,
+                   HelperClass.imageConverter(pictureBox1),
+                       2);
+                if (res == true)
+                {
+                    
+                    MessageBox.Show("Success to Update patient");
+                    dgvpatientsdetails.DataSource = pc.GetAllPatients();
+                    HelperClass.makeFieldsBlank(grpContainer);
+                    pictureBox1.Image = null;
+                }
+                else
+                {
+                    //display error message as data cannot be updated
+                    MessageBox.Show("Couldn't Update selected patient");
+                    dgvpatientsdetails.DataSource = pc.GetAllPatients();
+                    HelperClass.makeFieldsBlank(grpContainer);
+                    pictureBox1.Image = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void Btndelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                bool res = blc.PatientTable(PatientId,
+                   Convert.ToInt32(txtvisitorno.Text),
+                   txttitle.Text,
+                   txtpatientname.Text,
+                   txtaddress.Text,
+                   Convert.ToInt32(txtcontactno.Text),
+                   Convert.ToDateTime(dtpdob.Text),
+                   cmbgender.Text,
+                   cmbpatienttype.Text,
+                   cmbmaritalstatus.Text,
+                   cmbbloodgroup.Text,
+                   HelperClass.imageConverter(pictureBox1),
+                       3);
+                if (res == true)
+                {
+                    //display message of successfully deleted
+                    MessageBox.Show("Success to Delete patient");
+                    dgvpatientsdetails.DataSource = pc.GetAllPatients();
+                    HelperClass.makeFieldsBlank(grpContainer);
+                    pictureBox1.Image = null;
+                }
+                else
+                {
+                    //display error message as data cannot be deleted
+                    MessageBox.Show("Couldn't Delete selected patient");
+                    dgvpatientsdetails.DataSource = pc.GetAllPatients();
+                    HelperClass.makeFieldsBlank(grpContainer);
+                    pictureBox1.Image = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void Btnclose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
