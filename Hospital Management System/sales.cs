@@ -25,40 +25,50 @@ namespace Hospital_Management_System
         BusinessLogicLayer blc = new BusinessLogicLayer();
         HelperClass hc = new HelperClass();
         public int SaleId;
+        PatientClass pc = new PatientClass();
+        DoctorClass dc = new DoctorClass();
 
         private void Btnadd_Click(object sender, EventArgs e)
         {
             if (txtvisitorno.Text == "")
             {
                 MessageBox.Show("Provide Visitor No: Full information required");
+                return;
             }
-            if (txtpatientname.Text == "")
+            else if (txtpatientname.Text == "")
             {
                 MessageBox.Show("Provide patient Name: Full information required");
+                return;
             }
-            if (txtreferringno.Text == "")
+            else if (txtreferringno.Text == "")
             {
                 MessageBox.Show("Provide Referring No: Full information required");
+                return;
             }
-            if (txtdoctorsname.Text == "")
+            else if (txtdoctorsname.Text == "")
             {
                 MessageBox.Show("Provide Doctor Name: Full information required");
+                return;
             }
-            if (txtreferredmedicines.Text == "")
+            else if (txtreferredmedicines.Text == "")
             {
                 MessageBox.Show("Provide Referred Medicines: Full information required");
+                return;
             }
-            if (txtsalesprice.Text == "")
+            else if (txtsalesprice.Text == "")
             {
                 MessageBox.Show("Provide Sales Price: Full information required");
+                return;
             }
-            if (txtquantity.Text == "")
+            else if (txtquantity.Text == "")
             {
                 MessageBox.Show("Provide Quantity: Full information required");
+                return;
             }
-            if (txttotalprice.Text == "")
+            else if (txttotalprice.Text == "")
             {
                 MessageBox.Show("Provide Total Price: Full information required");
+                return;
             }
 
             else if (Dublicatesale() == true)
@@ -66,11 +76,12 @@ namespace Hospital_Management_System
                 MessageBox.Show("Already exists");
                 txtvisitorno.Clear();
                 txtvisitorno.Focus();
+                return;
             }
             { CreateSale(); }
         }
 
-        //create user
+        //create sale
         private void CreateSale()
         {
             //try catch exception
@@ -90,7 +101,7 @@ namespace Hospital_Management_System
                        1);
                 if (res == true)
                 {
-                    //display message of adding memeber in database
+                    //display message of adding sale in database
                     MessageBox.Show("Success to Add Sale");
                     dgvsalesdetails.DataSource = sc.GetAllSales();
                     HelperClass.makeFieldsBlank(grpContainer);
@@ -183,6 +194,7 @@ namespace Hospital_Management_System
 
         private void Btndelete_Click(object sender, EventArgs e)
         {
+            DialogResult dr = MessageBox.Show("Are you surely want to delete?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             try
             {
                 bool res = blc.SaleTable(SaleId,
@@ -249,6 +261,17 @@ namespace Hospital_Management_System
         private void Sales_Load(object sender, EventArgs e)
         {
             dgvsalesdetails.DataSource = sc.GetAllSales();
+            
+        }
+
+        private void Btnclose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Btnprint_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

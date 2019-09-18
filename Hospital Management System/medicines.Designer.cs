@@ -32,6 +32,9 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label11 = new System.Windows.Forms.Label();
             this.grpContainer = new System.Windows.Forms.GroupBox();
+            this.txtvisitorno = new System.Windows.Forms.TextBox();
+            this.cmbdoctorname = new System.Windows.Forms.ComboBox();
+            this.cmbpatientname = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.txtsuppliername = new System.Windows.Forms.TextBox();
@@ -47,14 +50,11 @@
             this.label3 = new System.Windows.Forms.Label();
             this.dgvmedicinesdetails = new System.Windows.Forms.DataGridView();
             this.txtreferringno = new System.Windows.Forms.TextBox();
-            this.txtdoctorsname = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnclose = new System.Windows.Forms.Button();
             this.btndelete = new System.Windows.Forms.Button();
             this.btnupdate = new System.Windows.Forms.Button();
             this.btnadd = new System.Windows.Forms.Button();
-            this.txtpatientname = new System.Windows.Forms.TextBox();
-            this.txtvisitorno = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
@@ -68,9 +68,9 @@
             // 
             this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.grpContainer);
-            this.panel1.Location = new System.Drawing.Point(12, 12);
+            this.panel1.Location = new System.Drawing.Point(49, 59);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1212, 537);
+            this.panel1.Size = new System.Drawing.Size(1212, 583);
             this.panel1.TabIndex = 0;
             // 
             // label11
@@ -85,6 +85,9 @@
             // 
             // grpContainer
             // 
+            this.grpContainer.Controls.Add(this.txtvisitorno);
+            this.grpContainer.Controls.Add(this.cmbdoctorname);
+            this.grpContainer.Controls.Add(this.cmbpatientname);
             this.grpContainer.Controls.Add(this.label8);
             this.grpContainer.Controls.Add(this.label9);
             this.grpContainer.Controls.Add(this.txtsuppliername);
@@ -100,23 +103,55 @@
             this.grpContainer.Controls.Add(this.label3);
             this.grpContainer.Controls.Add(this.dgvmedicinesdetails);
             this.grpContainer.Controls.Add(this.txtreferringno);
-            this.grpContainer.Controls.Add(this.txtdoctorsname);
             this.grpContainer.Controls.Add(this.pictureBox1);
             this.grpContainer.Controls.Add(this.btnclose);
             this.grpContainer.Controls.Add(this.btndelete);
             this.grpContainer.Controls.Add(this.btnupdate);
             this.grpContainer.Controls.Add(this.btnadd);
-            this.grpContainer.Controls.Add(this.txtpatientname);
-            this.grpContainer.Controls.Add(this.txtvisitorno);
             this.grpContainer.Controls.Add(this.label4);
             this.grpContainer.Controls.Add(this.label1);
             this.grpContainer.Font = new System.Drawing.Font("Times New Roman", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpContainer.Location = new System.Drawing.Point(3, 80);
             this.grpContainer.Name = "grpContainer";
-            this.grpContainer.Size = new System.Drawing.Size(1197, 444);
+            this.grpContainer.Size = new System.Drawing.Size(1197, 484);
             this.grpContainer.TabIndex = 37;
             this.grpContainer.TabStop = false;
             this.grpContainer.Text = "Enter the following details:";
+            // 
+            // txtvisitorno
+            // 
+            this.txtvisitorno.Location = new System.Drawing.Point(109, 34);
+            this.txtvisitorno.Name = "txtvisitorno";
+            this.txtvisitorno.Size = new System.Drawing.Size(172, 22);
+            this.txtvisitorno.TabIndex = 61;
+            // 
+            // cmbdoctorname
+            // 
+            this.cmbdoctorname.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbdoctorname.FormattingEnabled = true;
+            this.cmbdoctorname.Items.AddRange(new object[] {
+            "Male",
+            "Female",
+            "Others"});
+            this.cmbdoctorname.Location = new System.Drawing.Point(480, 63);
+            this.cmbdoctorname.Name = "cmbdoctorname";
+            this.cmbdoctorname.Size = new System.Drawing.Size(172, 24);
+            this.cmbdoctorname.TabIndex = 60;
+            this.cmbdoctorname.SelectedIndexChanged += new System.EventHandler(this.Cmbdoctorname_SelectedIndexChanged);
+            // 
+            // cmbpatientname
+            // 
+            this.cmbpatientname.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbpatientname.FormattingEnabled = true;
+            this.cmbpatientname.Items.AddRange(new object[] {
+            "Male",
+            "Female",
+            "Others"});
+            this.cmbpatientname.Location = new System.Drawing.Point(109, 69);
+            this.cmbpatientname.Name = "cmbpatientname";
+            this.cmbpatientname.Size = new System.Drawing.Size(172, 24);
+            this.cmbpatientname.TabIndex = 59;
+            this.cmbpatientname.SelectedIndexChanged += new System.EventHandler(this.Cmbpatientname_SelectedIndexChanged);
             // 
             // label8
             // 
@@ -231,25 +266,18 @@
             // dgvmedicinesdetails
             // 
             this.dgvmedicinesdetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvmedicinesdetails.Location = new System.Drawing.Point(19, 247);
+            this.dgvmedicinesdetails.Location = new System.Drawing.Point(19, 257);
             this.dgvmedicinesdetails.Name = "dgvmedicinesdetails";
-            this.dgvmedicinesdetails.Size = new System.Drawing.Size(1159, 161);
+            this.dgvmedicinesdetails.Size = new System.Drawing.Size(1159, 190);
             this.dgvmedicinesdetails.TabIndex = 35;
             this.dgvmedicinesdetails.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dgvmedicinesdetails_CellContentClick);
             // 
             // txtreferringno
             // 
-            this.txtreferringno.Location = new System.Drawing.Point(480, 32);
+            this.txtreferringno.Location = new System.Drawing.Point(480, 31);
             this.txtreferringno.Name = "txtreferringno";
             this.txtreferringno.Size = new System.Drawing.Size(172, 22);
-            this.txtreferringno.TabIndex = 3;
-            // 
-            // txtdoctorsname
-            // 
-            this.txtdoctorsname.Location = new System.Drawing.Point(480, 67);
-            this.txtdoctorsname.Name = "txtdoctorsname";
-            this.txtdoctorsname.Size = new System.Drawing.Size(172, 22);
-            this.txtdoctorsname.TabIndex = 4;
+            this.txtreferringno.TabIndex = 4;
             // 
             // pictureBox1
             // 
@@ -269,6 +297,7 @@
             this.btnclose.TabIndex = 11;
             this.btnclose.Text = "CLOSE";
             this.btnclose.UseVisualStyleBackColor = true;
+            this.btnclose.Click += new System.EventHandler(this.Btnclose_Click);
             // 
             // btndelete
             // 
@@ -300,20 +329,6 @@
             this.btnadd.UseVisualStyleBackColor = true;
             this.btnadd.Click += new System.EventHandler(this.Btnadd_Click);
             // 
-            // txtpatientname
-            // 
-            this.txtpatientname.Location = new System.Drawing.Point(116, 70);
-            this.txtpatientname.Name = "txtpatientname";
-            this.txtpatientname.Size = new System.Drawing.Size(172, 22);
-            this.txtpatientname.TabIndex = 2;
-            // 
-            // txtvisitorno
-            // 
-            this.txtvisitorno.Location = new System.Drawing.Point(116, 35);
-            this.txtvisitorno.Name = "txtvisitorno";
-            this.txtvisitorno.Size = new System.Drawing.Size(172, 22);
-            this.txtvisitorno.TabIndex = 1;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -336,10 +351,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1224, 524);
+            this.ClientSize = new System.Drawing.Size(1370, 749);
             this.Controls.Add(this.panel1);
             this.Name = "medicines";
             this.Text = "medicines";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Medicines_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -362,14 +378,11 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridView dgvmedicinesdetails;
         private System.Windows.Forms.TextBox txtreferringno;
-        private System.Windows.Forms.TextBox txtdoctorsname;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnclose;
         private System.Windows.Forms.Button btndelete;
         private System.Windows.Forms.Button btnupdate;
         private System.Windows.Forms.Button btnadd;
-        private System.Windows.Forms.TextBox txtpatientname;
-        private System.Windows.Forms.TextBox txtvisitorno;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label8;
@@ -382,5 +395,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtreferredmedicines;
+        private System.Windows.Forms.ComboBox cmbdoctorname;
+        private System.Windows.Forms.ComboBox cmbpatientname;
+        private System.Windows.Forms.TextBox txtvisitorno;
     }
 }

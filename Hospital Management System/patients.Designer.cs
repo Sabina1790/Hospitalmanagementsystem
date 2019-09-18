@@ -69,7 +69,7 @@
             // 
             this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.grpContainer);
-            this.panel1.Location = new System.Drawing.Point(12, 12);
+            this.panel1.Location = new System.Drawing.Point(72, 90);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1218, 498);
             this.panel1.TabIndex = 0;
@@ -144,9 +144,10 @@
             // 
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(734, 33);
+            this.pictureBox1.Location = new System.Drawing.Point(724, 35);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(227, 129);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox1.TabIndex = 34;
             this.pictureBox1.TabStop = false;
             // 
@@ -380,10 +381,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1242, 524);
+            this.ClientSize = new System.Drawing.Size(1370, 749);
             this.Controls.Add(this.panel1);
             this.Name = "patients";
             this.Text = "patients";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Patients_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

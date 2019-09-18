@@ -1,0 +1,277 @@
+Create Table CabinTable
+(
+CabinId int identity(1,1) primary key,
+CabinNo numeric(15),
+RoomNo numeric(15),
+CabinType varchar(50),
+Doctor varchar(50),
+Staff varchar(50)
+)
+
+Create Procedure SP_ManageCabins
+(
+@CabinId int,
+@CabinNo numeric(15),
+@RoomNo numeric(15),
+@CabinType varchar(50),
+@Doctor varchar(50),
+@Staff varchar(50),
+@Mode int
+)
+as
+begin
+if(@Mode=1)
+insert into CabinTable(CabinNo,RoomNo,CabinType,Doctor,Staff) values
+(@CabinNo,@RoomNo,@CabinType,@Doctor,@Staff)
+if (@Mode=2)
+Update CabinTable set CabinNo=@CabinNo,RoomNo=@RoomNo,CabinType=@CabinType,Doctor=@Doctor,Staff=@Staff
+where CabinId=@CabinId
+if(@Mode=3)
+Delete from CabinTable where CabinId=@CabinId
+end
+
+
+Create Table DoctorTable
+(
+DoctorId int identity(1,1) primary key,
+ReferringNo numeric(15),
+FirstName varchar(50),
+LastName varchar(50),
+Speciality varchar(100),
+ContactNo numeric(10),
+DOB date,
+Gender varchar(50),
+Address varchar(50),
+ReferringRate varchar(50),
+BloodGroup varchar(3),
+Image image
+)
+
+Create Procedure SP_ManageDoctor
+(
+@DoctorId int,
+@ReferringNo numeric(15),
+@FirstName varchar(50),
+@LastName varchar(50),
+@Speciality varchar(100),
+@ContactNo numeric(10),
+@DOB date,
+@Gender varchar(50),
+@Address varchar(50),
+@ReferringRate varchar(50),
+@BloodGroup varchar(3),
+@Image image,
+@Mode int
+)
+as
+begin
+if(@Mode=1)
+insert into DoctorTable(ReferringNo,FirstName,LastName,Speciality,ContactNo,DOB,Gender,Address,ReferringRate,BloodGroup,Image) values 
+(@ReferringNo,@FirstName,@LastName,@Speciality,@ContactNo,@DOB,@Gender,@Address,@ReferringRate,@BloodGroup,@Image)
+if (@Mode=2)
+Update DoctorTable set ReferringNo=@ReferringNo,FirstName=@FirstName,LastName=@LastName,Speciality=@Speciality,ContactNo=@ContactNo,
+DOB=@DOB,Gender=@Gender,Address=@Address,ReferringRate=@ReferringRate,BloodGroup=@BloodGroup,Image=@Image
+where DoctorId=@DoctorId
+if(@Mode=3)
+Delete from DoctorTable where DoctorId=@DoctorId
+end
+
+
+
+Create Table MedicineTable
+(
+MedicineId int identity(1,1) primary key,
+VisitorNo numeric(15),
+PatientName varchar(50),
+ReferringNo numeric(15),
+DoctorName varchar(50),
+ReferredMedicines varchar(100),
+MfgDate date,
+ExpiredDate date,
+SupplierName varchar(50),
+CompanyName varchar(50),
+Image1 image,
+Image2 image
+)
+
+Create Procedure SP_ManageMedicines
+(
+@MedicineId int,
+@VisitorNo numeric(15),
+@PatientName varchar(50),
+@ReferringNo numeric(15),
+@DoctorName varchar(50),
+@ReferredMedicines varchar(100),
+@MfgDate date,
+@ExpiredDate date,
+@SupplierName varchar(50),
+@CompanyName varchar(50),
+@Image1 image,
+@Image2 image,
+@Mode int
+)
+as
+begin
+if(@Mode=1)
+insert into MedicineTable(VisitorNo,PatientName,ReferringNo,DoctorName,ReferredMedicines,MfgDate,
+ExpiredDate,SupplierName,CompanyName,Image1,Image2) values
+(@VisitorNo,@PatientName,@ReferringNo,@DoctorName,@ReferredMedicines,@MfgDate,@ExpiredDate,@SupplierName,
+@CompanyName,@Image1,@Image2)
+if (@Mode=2)
+Update MedicineTable set VisitorNo=@VisitorNo,PatientName=@PatientName,ReferringNo=@ReferringNo,DoctorName=@DoctorName,
+ReferredMedicines=@ReferredMedicines,MfgDate=@MfgDate,ExpiredDate=@ExpiredDate,SupplierName=@SupplierName,
+CompanyName=@CompanyName,Image1=@Image1,Image2=@Image2
+where MedicineId=@MedicineId
+if(@Mode=3)
+Delete from MedicineTable where MedicineId=@MedicineId
+end
+
+
+
+
+Create Table PatientTable
+(
+PatientId int identity(1,1) primary key,
+VisitorNo numeric(15),
+Title varchar(50),
+PatientName varchar(50),
+Address varchar(50),
+ContactNo numeric(10),
+DOB date,
+Gender varchar(50),
+PatientType varchar(50),
+MaritialStatus varchar(50),
+BloodGroup varchar(3),
+Image image
+)
+
+Create Procedure SP_ManagePatients
+(
+@PatientId int,
+@VisitorNo numeric(15),
+@Title varchar(50),
+@PatientName varchar(50),
+@Address varchar(50),
+@ContactNo numeric(10),
+@DOB date,
+@Gender varchar(50),
+@PatientType varchar(50),
+@MaritialStatus varchar(50),
+@BloodGroup varchar(3),
+@Image image,
+@Mode int
+)
+as
+begin
+if(@Mode=1)
+insert into PatientTable(VisitorNo,Title,PatientName,Address,ContactNo,DOB,Gender,PatientType,MaritialStatus,BloodGroup,Image) values 
+(@VisitorNo,@Title,@PatientName,@Address,@ContactNo,@DOB,@Gender,@PatientType,@MaritialStatus,@BloodGroup,@Image)
+if (@Mode=2)
+Update PatientTable set VisitorNo=@VisitorNo,Title=@Title,PatientName=@PatientName,Address=@Address,ContactNo=@ContactNo,
+DOB=@DOB,Gender=@Gender,PatientType=@PatientType,MaritialStatus=@MaritialStatus,BloodGroup=@BloodGroup,Image=@Image
+where PatientId=@PatientId
+if(@Mode=3)
+Delete from PatientTable where PatientId=@PatientId
+end
+
+
+
+Create Table SaleTable
+(
+SaleId int identity(1,1) primary key,
+VisitorNo numeric(15),
+PatientName varchar(50),
+ReferringNo numeric(15),
+DoctorName varchar(50),
+ReferredMedicines varchar(100),
+SalesPrice numeric(20),
+Quantity numeric(20),
+TotalPrice numeric(20),
+Image1 image,
+Image2 image
+)
+
+Create Procedure SP_ManageSales
+(
+@SaleId int,
+@VisitorNo numeric(15),
+@PatientName varchar(50),
+@ReferringNo numeric(15),
+@DoctorName varchar(50),
+@ReferredMedicines varchar(100),
+@SalesPrice numeric(20),
+@Quantity numeric(20),
+@TotalPrice numeric(20),
+@Image1 image,
+@Image2 image,
+@Mode int
+)
+as
+begin
+if(@Mode=1)
+insert into SaleTable(VisitorNo,PatientName,ReferringNo,DoctorName,ReferredMedicines,SalesPrice,Quantity,TotalPrice,Image1,Image2) values
+(@VisitorNo,@PatientName,@ReferringNo,@DoctorName,@ReferredMedicines,@SalesPrice,@Quantity,@TotalPrice,@Image1,@Image2)
+if (@Mode=2)
+Update SaleTable set VisitorNo=@VisitorNo,PatientName=@PatientName,ReferringNo=@ReferringNo,DoctorName=@DoctorName,
+ReferredMedicines=@ReferredMedicines,SalesPrice=@SalesPrice,Quantity=@Quantity,TotalPrice=@TotalPrice,Image1=@Image1,Image2=@Image2
+where SaleId=@SaleId
+if(@Mode=3)
+Delete from SaleTable where SaleId=@SaleId
+end
+
+
+
+Create Table StaffTable
+(
+StaffId int identity(1,1) primary key,
+StaffNo numeric(15), StaffName varchar(50), Category varchar(50), WardNo numeric(15),
+Qualification varchar(100), DOB date, Gender varchar(50), MaritalStatus varchar(50),
+BloodGroup varchar(3), DutyTime time, EndTime time, Image image
+)
+
+Create Procedure SP_ManageStaffs
+(
+@StaffId int, @StaffNo numeric(15), @StaffName varchar(50),
+@Category varchar(50), @WardNo numeric(15), @Qualification varchar(100),
+@DOB date, @Gender varchar(50), @MaritalStatus varchar(50), @BloodGroup varchar(3),
+@DutyTime time, @EndTime time, @Image image, @Mode int
+)
+as
+begin
+if(@Mode=1)
+insert into StaffTable(StaffNo,StaffName,Category,WardNo,Qualification,DOB,Gender,MaritalStatus,BloodGroup,DutyTime,EndTime,Image) values 
+(@StaffNo,@StaffName,@Category,@WardNo,@Qualification,@DOB,@Gender,@MaritalStatus,@BloodGroup,@DutyTime,@EndTime,@Image)
+if (@Mode=2)
+Update StaffTable set StaffNo=@StaffNo,StaffName=@StaffName,Category=@Category,WardNo=@WardNo,Qualification=@Qualification,
+DOB=@DOB,Gender=@Gender,MaritalStatus=@MaritalStatus,BloodGroup=@BloodGroup,DutyTime=@DutyTime,EndTime=@EndTime,Image=@Image
+where StaffId=@StaffId
+if(@Mode=3)
+Delete from StaffTable where StaffId=@StaffId
+end
+
+
+
+Create Table UserTable
+(
+UserId int identity(1,1) primary key,
+UserName varchar(50),
+Password varchar(50),
+Role varchar(50)
+)
+
+Create Procedure SP_ManageUsers
+(
+@UserId int, @UserName varchar(50), @Password varchar(50), @Role varchar(50),@Mode int
+)
+as
+begin
+if(@Mode=1)
+insert into UserTable(UserName,Password,Role) values 
+(@UserName,@Password,@Role)
+if (@Mode=2)
+Update UserTable set UserName=@UserName,Password=@Password,Role=@Role
+where UserId=@UserId
+if(@Mode=3)
+Delete from UserTable where UserId=@UserId
+end
+

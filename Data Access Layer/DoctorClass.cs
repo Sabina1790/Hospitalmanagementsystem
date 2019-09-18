@@ -20,19 +20,19 @@ namespace Data_Access_Layer
             DateTime DOB,
             String Gender,
             String Address,
-            String ReferringRate,
+            int ReferringRate,
             String BloodGroup,
             byte[] Image,
             int Mode)
         {
             try
             {
-                SqlCommand cmd = new SqlCommand("SP_ManagePatients", conn);
+                SqlCommand cmd = new SqlCommand("SP_ManageDoctors", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@DoctorId", DoctorId);
                 cmd.Parameters.AddWithValue("@ReferringNo", ReferringNo);
                 cmd.Parameters.AddWithValue("@FirstName", FirstName);
-                cmd.Parameters.AddWithValue("@lastName", LastName);
+                cmd.Parameters.AddWithValue("@LastName", LastName);
                 cmd.Parameters.AddWithValue("@Speciality", Speciality);
                 cmd.Parameters.AddWithValue("@ContactNo", ContactNo);
                 cmd.Parameters.AddWithValue("@DOB", DOB);

@@ -12,6 +12,7 @@ using Business_Logic_Layer;
 using Microsoft.VisualBasic;
 using System.Text.RegularExpressions;
 using System.IO;
+using System.Data.SqlClient;
 
 namespace Hospital_Management_System
 {
@@ -21,9 +22,12 @@ namespace Hospital_Management_System
         {
             InitializeComponent();
         }
+        SqlConnection conn = new SqlConnection(ConnectionClass.ConnectionString);
         MedicineClass mc = new MedicineClass();
         BusinessLogicLayer blc = new BusinessLogicLayer();
         HelperClass hc = new HelperClass();
+        PatientClass pc = new PatientClass();
+        DoctorClass dc = new DoctorClass();
         public int MedicineId;
 
 
@@ -32,45 +36,47 @@ namespace Hospital_Management_System
             if (txtvisitorno.Text == "")
             {
                 MessageBox.Show("Provide Visitor No: Full information required");
+                return;
             }
-            if (txtpatientname.Text == "")
+            else if (cmbpatientname.Text == "")
             {
                 MessageBox.Show("Provide patient Name: Full information required");
+                return;
             }
-            if (txtreferringno.Text == "")
+            else if (txtreferringno.Text == "")
             {
                 MessageBox.Show("Provide Referring No: Full information required");
+                return;
             }
-            if (txtdoctorsname.Text == "")
+            else if (cmbdoctorname.Text == "")
             {
                 MessageBox.Show("Provide Doctor Name: Full information required");
+                return;
             }
-            if (txtreferredmedicines.Text == "")
+            else if (txtreferredmedicines.Text == "")
             {
                 MessageBox.Show("Provide Referred Medicines: Full information required");
+                return;
             }
-            if (dtpmfgdate.Text == "")
+            else if (dtpmfgdate.Text == "")
             {
                 MessageBox.Show("Provide Mfg Date: Full information required");
+                return;
             }
-            if(dtpexpireddate.Text == "")
+            else if(dtpexpireddate.Text == "")
             {
                 MessageBox.Show("Provide Expired Date: Full information required");
+                return;
             }
-            if (txtsuppliername.Text == "")
+            else if (txtsuppliername.Text == "")
             {
                 MessageBox.Show("Provide Supplier Name: Full information required");
+                return;
             }
-            if (txtcompanyname.Text == "")
+            else if (txtcompanyname.Text == "")
             {
                 MessageBox.Show("Provide Company Name: Full information required");
-            }
-
-            else if (DublicateMedicine() == true)
-            {
-                MessageBox.Show("Already exists");
-                txtvisitorno.Clear();
-                txtvisitorno.Focus();
+                return;
             }
             { CreateMedicine(); }
         }
@@ -83,9 +89,9 @@ namespace Hospital_Management_System
             {
                 bool res = blc.MedicineTable(0,
                    Convert.ToInt32(txtvisitorno.Text),
-                   txtpatientname.Text,
+                   cmbpatientname.Text,
                    Convert.ToInt32(txtreferringno.Text),
-                   txtdoctorsname.Text,
+                   cmbdoctorname.Text,
                    txtreferredmedicines.Text,
                    Convert.ToDateTime(dtpmfgdate.Text),
                    Convert.ToDateTime(dtpexpireddate.Text),
@@ -120,31 +126,6 @@ namespace Hospital_Management_System
         }
 
 
-        //helps in data store as if users have same information
-        public bool DublicateMedicine()
-        {
-            int x = 0;
-            try
-            {
-
-                for (int i = 0; i < dgvmedicinesdetails.Rows.Count; i++)
-                {
-                    if (txtvisitorno.Text == dgvmedicinesdetails.Rows[i].Cells["VisitirNo"].Value.ToString())
-                        x = 1;
-                }
-
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.Message);
-            }
-            if (x == 1)
-                return true;
-            else
-                return false;
-
-        }
 
         private void Btnupdate_Click(object sender, EventArgs e)
         {
@@ -152,9 +133,9 @@ namespace Hospital_Management_System
             {
                 bool res = blc.MedicineTable(MedicineId,
                    Convert.ToInt32(txtvisitorno.Text),
-                   txtpatientname.Text,
+                   cmbpatientname.Text,
                    Convert.ToInt32(txtreferringno.Text),
-                   txtdoctorsname.Text,
+                   cmbdoctorname.Text,
                    txtreferredmedicines.Text,
                    Convert.ToDateTime(dtpmfgdate.Text),
                    Convert.ToDateTime(dtpexpireddate.Text),
@@ -190,13 +171,14 @@ namespace Hospital_Management_System
 
         private void Btndelete_Click(object sender, EventArgs e)
         {
+            DialogResult dr = MessageBox.Show("Are you surely want to delete?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             try
             {
                 bool res = blc.MedicineTable(MedicineId,
                    Convert.ToInt32(txtvisitorno.Text),
-                   txtpatientname.Text,
+                   cmbpatientname.Text,
                    Convert.ToInt32(txtreferringno.Text),
-                   txtdoctorsname.Text,
+                   cmbdoctorname.Text,
                    txtreferredmedicines.Text,
                    Convert.ToDateTime(dtpmfgdate.Text),
                    Convert.ToDateTime(dtpexpireddate.Text),
@@ -230,15 +212,17 @@ namespace Hospital_Management_System
             }
         }
 
+
+
         private void Dgvmedicinesdetails_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
                 MedicineId = Convert.ToInt32(dgvmedicinesdetails.SelectedRows[0].Cells["MedicineId"].Value.ToString());
                 txtvisitorno.Text = dgvmedicinesdetails.SelectedRows[0].Cells["VisitorNo"].Value.ToString();
-                txtpatientname.Text = dgvmedicinesdetails.SelectedRows[0].Cells["PatientName"].Value.ToString();
-                txtreferringno.Text = dgvmedicinesdetails.SelectedRows[0].Cells["ReferringNo"].Value.ToString();
-                txtdoctorsname.Text = dgvmedicinesdetails.SelectedRows[0].Cells["DoctorName"].Value.ToString();
+                cmbpatientname.Text = dgvmedicinesdetails.SelectedRows[0].Cells["PatientName"].Value.ToString();
+                cmbdoctorname.Text = dgvmedicinesdetails.SelectedRows[0].Cells["ReferringNo"].Value.ToString();
+                txtreferringno.Text = dgvmedicinesdetails.SelectedRows[0].Cells["DoctorName"].Value.ToString();
                 txtreferredmedicines.Text = dgvmedicinesdetails.SelectedRows[0].Cells["ReferredMedicines"].Value.ToString();
                 dtpmfgdate.Text = dgvmedicinesdetails.SelectedRows[0].Cells["MfgDate"].Value.ToString();
                 dtpexpireddate.Text = dgvmedicinesdetails.SelectedRows[0].Cells["ExpiredDate"].Value.ToString();
@@ -258,6 +242,84 @@ namespace Hospital_Management_System
         private void Medicines_Load(object sender, EventArgs e)
         {
             dgvmedicinesdetails.DataSource = mc.GetAllmedicines();
+            cmbpatientname.DataSource = pc.GetAllPatients();
+            cmbdoctorname.DataSource = dc.GetAllDoctors();
+            cmbpatientname.DisplayMember = "PatientName";
+            cmbpatientname.ValueMember = "PatientName";
+            cmbpatientname.SelectedValue = -1;
+            cmbdoctorname.DisplayMember = "FirstName";
+            cmbdoctorname.ValueMember = "FirstName";
+            cmbdoctorname.SelectedValue = -1;
+
+        }
+
+        private void Btnclose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+
+
+
+        private void Cmbdoctorname_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand("Select * from DoctorTable where FirstName ='" + cmbdoctorname.Text + "'", conn);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                SqlDataReader dr;
+                dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    string ReferringNo = (string)dr["ReferringNo"].ToString();
+                    txtreferringno.Text = ReferringNo;
+
+                    string Image = (string)dr["Image"].ToString();
+                    pictureBox2.Text = Image;
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+        }
+
+        private void Cmbpatientname_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand("Select * from PatientTable where PatientName ='" + cmbpatientname.Text + "'", conn);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                SqlDataReader dr;
+                dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    string VisitorNo = (string)dr["VisitorNo"].ToString();
+                    txtvisitorno.Text = VisitorNo;
+
+                    string Image = (string)dr["Image"].ToString();
+                    pictureBox1.Text = Image;
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
     }
 }

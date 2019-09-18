@@ -32,48 +32,59 @@ namespace Hospital_Management_System
             if (txtreferringno.Text == "")
             {
                 MessageBox.Show("Provide Referring No: Full information required");
+                return;
             }
-            if (txtfirstname.Text == "")
+            else if (txtfirstname.Text == "")
             {
                 MessageBox.Show("Provide First Name: Full information required");
+                return;
             }
-            if (txtlastname.Text == "")
+            else if (txtlastname.Text == "")
             {
                 MessageBox.Show("Provide Last Name: Full information required");
+                return;
             }
-            if (txtspeciality.Text == "")
+            else if (txtspeciality.Text == "")
             {
                 MessageBox.Show("Provide Speciality: Full information required");
+                return;
             }
-            if (txtcontact.Text == "")
+            else if (txtcontact.Text == "")
             {
                 MessageBox.Show("Provide Contact No: Full information required");
+                return;
             }
-            if (dtpdob.Text == "")
+            else if (dtpdob.Text == "")
             {
                 MessageBox.Show("Provide DOB: Full information required");
+                return;
             }
-            if (cmbgender.SelectedIndex == -1)
+            else if (cmbgender.SelectedIndex == -1)
             {
                 MessageBox.Show("Provide Gender: Full information required");
+                return;
             }
-            if (txtreferringrate.Text == "")
+            else if (txtreferringrate.Text == "")
             {
                 MessageBox.Show("Provide Referring Rate: Full information required");
+                return;
             }
-            if (cmbbloodgroup.SelectedIndex == -1)
+            else if (cmbbloodgroup.SelectedIndex == -1)
             {
                 MessageBox.Show("Provide Blood Group: Full information required");
+                return;
             }
-            if (btnbrowse.Text == "")
+            else if (btnbrowse.Text == "")
             {
                 MessageBox.Show("Provide Image: Full information required");
+                return;
             }
             else if (DublicateDoctor() == true)
             {
                 MessageBox.Show("Doctor with same name already exists");
                 txtfirstname.Clear();
                 txtfirstname.Focus();
+                return;
             }
             { CreateDoctor(); }
         }
@@ -93,13 +104,13 @@ namespace Hospital_Management_System
                    Convert.ToDateTime(dtpdob.Text),
                    cmbgender.Text,
                    txtaddress.Text,
-                   txtreferringrate.Text,
+                   Convert.ToInt32(txtreferringrate.Text),
                    cmbbloodgroup.Text,
                    HelperClass.imageConverter(pictureBox1),
                        1);
                 if (res == true)
                 {
-                    //display message of adding memeber in database
+                    //display message of adding doctor in database
                     MessageBox.Show("Success to Add Doctor");
                     dgvdoctorsdetails.DataSource = dc.GetAllDoctors();
                     HelperClass.makeFieldsBlank(grpContainer);
@@ -121,7 +132,7 @@ namespace Hospital_Management_System
         }
 
 
-        //helps in data store as if users have same information
+        //helps in data store as if doctors have same information
         public bool DublicateDoctor()
         {
             int x = 0;
@@ -192,13 +203,13 @@ namespace Hospital_Management_System
                    Convert.ToDateTime(dtpdob.Text),
                    cmbgender.Text,
                    txtaddress.Text,
-                   txtreferringrate.Text,
+                   Convert.ToInt32(txtreferringrate.Text),
                    cmbbloodgroup.Text,
                    HelperClass.imageConverter(pictureBox1),
                        2);
                 if (res == true)
                 {
-                    //display message of adding memeber in database
+                    //display message of adding doctor in database
                     MessageBox.Show("Success to Update Doctor");
                     dgvdoctorsdetails.DataSource = dc.GetAllDoctors();
                     HelperClass.makeFieldsBlank(grpContainer);
@@ -221,6 +232,7 @@ namespace Hospital_Management_System
 
         private void Btndelete_Click(object sender, EventArgs e)
         {
+            DialogResult dr = MessageBox.Show("Are you surely want to delete?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             //try catch exception
             try
             {
@@ -233,13 +245,13 @@ namespace Hospital_Management_System
                    Convert.ToDateTime(dtpdob.Text),
                    cmbgender.Text,
                    txtaddress.Text,
-                   txtreferringrate.Text,
+                   Convert.ToInt32(txtreferringrate.Text),
                    cmbbloodgroup.Text,
                    HelperClass.imageConverter(pictureBox1),
                        3);
                 if (res == true)
                 {
-                    //display message of adding memeber in database
+                    //display message of adding doctor in database
                     MessageBox.Show("Success to Delete Doctor");
                     dgvdoctorsdetails.DataSource = dc.GetAllDoctors();
                     HelperClass.makeFieldsBlank(grpContainer);
@@ -288,6 +300,11 @@ namespace Hospital_Management_System
         private void Doctors_Load(object sender, EventArgs e)
         {
             dgvdoctorsdetails.DataSource = dc.GetAllDoctors();
+        }
+
+        private void Btnclose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

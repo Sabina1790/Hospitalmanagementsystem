@@ -37,52 +37,64 @@ namespace Hospital_Management_System
             if (txtvisitorno.Text == "")
             {
                 MessageBox.Show("Provide Visitor No: Full information required");
+                return;
             }
-            if (txttitle.Text == "")
+            else if (txttitle.Text == "")
             {
                 MessageBox.Show("Provide Title: Full information required");
+                return;
             }
-            if (txtpatientname.Text == "")
+            else if (txtpatientname.Text == "")
             {
                 MessageBox.Show("Provide Patient Name: Full information required");
+                return;
             }
-            if (txtaddress.Text == "")
+            else if (txtaddress.Text == "")
             {
                 MessageBox.Show("Provide Address: Full information required");
+                return;
             }
-            if (txtcontactno.Text == "")
+            else if (txtcontactno.Text == "")
             {
                 MessageBox.Show("Provide Contact No: Full information required");
+                return;
             }
-            if (dtpdob.Text == "")
+            else if (dtpdob.Text == "")
             {
                 MessageBox.Show("Provide DOB: Full information required");
+                return;
             }
-            if (cmbgender.SelectedIndex == -1)
+            else if (cmbgender.SelectedIndex == -1)
             {
                 MessageBox.Show("Provide Gender: Full information required");
+                return;
             }
-            if (cmbpatienttype.SelectedIndex == -1)
+            else if (cmbpatienttype.SelectedIndex == -1)
             {
                 MessageBox.Show("Provide Patient Type: Full information required");
+                return;
             }
-            if (cmbpatienttype.SelectedIndex == -1)
+            else if (cmbpatienttype.SelectedIndex == -1)
             {
                 MessageBox.Show("Provide Maritial Status: Full information required");
+                return;
             }
-            if (cmbbloodgroup.SelectedIndex == -1)
+            else if (cmbbloodgroup.SelectedIndex == -1)
             {
                 MessageBox.Show("Provide Blood Group: Full information required");
+                return;
             }
-            if (btnbrowse.Text == "")
+            else if (btnbrowse.Text == "")
             {
                 MessageBox.Show("Provide Image: Full information required");
+                return;
             }
             else if (DublicatePatient() == true)
             {
                 MessageBox.Show("Patient with same name already exists");
                 txtpatientname.Clear();
                 txtpatientname.Focus();
+                return;
             }
             { CreatePatient(); }
         }
@@ -169,7 +181,7 @@ namespace Hospital_Management_System
                 dtpdob.Text = dgvpatientsdetails.SelectedRows[0].Cells["DOB"].Value.ToString();
                 cmbgender.Text = dgvpatientsdetails.SelectedRows[0].Cells["Gender"].Value.ToString();
                 cmbpatienttype.Text = dgvpatientsdetails.SelectedRows[0].Cells["PatientType"].Value.ToString();
-                cmbmaritalstatus.Text = dgvpatientsdetails.SelectedRows[0].Cells["Maritialstatus"].Value.ToString();
+                cmbmaritalstatus.Text = dgvpatientsdetails.SelectedRows[0].Cells["MaritialStatus"].Value.ToString();
                 cmbbloodgroup.Text = dgvpatientsdetails.SelectedRows[0].Cells["BloodGroup"].Value.ToString();
                 MemoryStream memoryStream = new MemoryStream((byte[])dgvpatientsdetails.SelectedRows[0].Cells["Image"].Value);
                 pictureBox1.Image = Image.FromStream(memoryStream);
@@ -254,6 +266,7 @@ namespace Hospital_Management_System
 
         private void Btndelete_Click(object sender, EventArgs e)
         {
+            DialogResult dr = MessageBox.Show("Are you surely want to delete?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             try
             {
                 bool res = blc.PatientTable(PatientId,

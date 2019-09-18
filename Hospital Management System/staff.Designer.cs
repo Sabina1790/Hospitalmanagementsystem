@@ -111,7 +111,7 @@
             this.grpContainer.Font = new System.Drawing.Font("Times New Roman", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpContainer.Location = new System.Drawing.Point(3, 69);
             this.grpContainer.Name = "grpContainer";
-            this.grpContainer.Size = new System.Drawing.Size(1212, 426);
+            this.grpContainer.Size = new System.Drawing.Size(1212, 446);
             this.grpContainer.TabIndex = 0;
             this.grpContainer.TabStop = false;
             this.grpContainer.Text = "Enter the following details:";
@@ -171,9 +171,9 @@
             // dgvstaffdetails
             // 
             this.dgvstaffdetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvstaffdetails.Location = new System.Drawing.Point(19, 232);
+            this.dgvstaffdetails.Location = new System.Drawing.Point(19, 237);
             this.dgvstaffdetails.Name = "dgvstaffdetails";
-            this.dgvstaffdetails.Size = new System.Drawing.Size(1159, 161);
+            this.dgvstaffdetails.Size = new System.Drawing.Size(1159, 189);
             this.dgvstaffdetails.TabIndex = 35;
             this.dgvstaffdetails.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dgvstaffdetails_CellContentClick);
             // 
@@ -205,6 +205,7 @@
             this.btnclose.TabIndex = 16;
             this.btnclose.Text = "CLOSE";
             this.btnclose.UseVisualStyleBackColor = true;
+            this.btnclose.Click += new System.EventHandler(this.Btnclose_Click);
             // 
             // btndelete
             // 
@@ -389,7 +390,7 @@
             // 
             this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.grpContainer);
-            this.panel1.Location = new System.Drawing.Point(12, 12);
+            this.panel1.Location = new System.Drawing.Point(83, 83);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1218, 498);
             this.panel1.TabIndex = 2;
@@ -398,10 +399,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1237, 521);
+            this.ClientSize = new System.Drawing.Size(1370, 749);
             this.Controls.Add(this.panel1);
             this.Name = "staff";
             this.Text = "staff";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Staff_Load);
             this.grpContainer.ResumeLayout(false);
             this.grpContainer.PerformLayout();
@@ -420,7 +422,6 @@
         private System.Windows.Forms.DateTimePicker dtpendtime;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.DateTimePicker dtpdutytime;
         private System.Windows.Forms.TextBox txtwardno;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.DataGridView dgvstaffdetails;
@@ -447,5 +448,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.DateTimePicker dtpdutytime;
     }
 }

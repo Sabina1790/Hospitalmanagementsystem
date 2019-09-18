@@ -1,27 +1,47 @@
-Create Table StaffTable
-(
-StaffId int identity(1,1) primary key,
-StaffNo numeric(15), StaffName varchar(50), Category varchar(50), WardNo numeric(15),
-Qualification varchar(100), DOB date, Gender varchar(50), MaritalStatus varchar(50),
-BloodGroup varchar(3), DutyTime time, EndTime time, Image image
-)
+USE [hospitalmanagementsystem]
+GO
 
-Create Procedure SP_ManageStaffs
+/****** Object:  Table [dbo].[StaffTable]    Script Date: 09/16/2019 19:07:26 ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[StaffTable]') AND type in (N'U'))
+DROP TABLE [dbo].[StaffTable]
+GO
+
+USE [hospitalmanagementsystem]
+GO
+
+/****** Object:  Table [dbo].[StaffTable]    Script Date: 09/16/2019 19:07:26 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo].[StaffTable](
+	[StaffId] [int] IDENTITY(1,1) NOT NULL,
+	[StaffNo] [numeric](15, 2) NULL,
+	[StaffName] [varchar](50) NULL,
+	[Category] [varchar](50) NULL,
+	[WardNo] [numeric](15, 2) NULL,
+	[Qualification] [varchar](100) NULL,
+	[DOB] [date] NULL,
+	[Gender] [varchar](50) NULL,
+	[MaritalStatus] [varchar](50) NULL,
+	[BloodGroup] [varchar](50) NULL,
+	[DutyTime] [time](7) NULL,
+	[EndTime] [time](7) NULL,
+	[Image] [image] NULL,
+PRIMARY KEY CLUSTERED 
 (
-@StaffId int, @StaffNo numeric(15), @StaffName varchar(50),
-@Category varchar(50), @WardNo numeric(15), @Qualification varchar(100),
-@DOB date, @Gender varchar(50), @MaritalStatus varchar(50), @BloodGroup varchar(3),
-@DutyTime time, @EndTime time, @Image image, @Mode int
-)
-as
-begin
-if(@Mode=1)
-insert into StaffTable(StaffNo,StaffName,Category,WardNo,Qualification,DOB,Gender,MaritalStatus,BloodGroup,DutyTime,EndTime,Image) values 
-(@StaffNo,@StaffName,@Category,@WardNo,@Qualification,@DOB,@Gender,@MaritalStatus,@BloodGroup,@DutyTime,@EndTime,@Image)
-if (@Mode=2)
-Update StaffTable set StaffNo=@StaffNo,StaffName=@StaffName,Category=@Category,WardNo=@WardNo,Qualification=@Qualification,
-DOB=@DOB,Gender=@Gender,MaritalStatus=@MaritalStatus,BloodGroup=@BloodGroup,DutyTime=@DutyTime,EndTime=@EndTime,Image=@Image
-where StaffId=@StaffId
-if(@Mode=3)
-Delete from StaffTable where StaffId=@StaffId
-end
+	[StaffId] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+

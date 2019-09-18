@@ -93,7 +93,7 @@
             this.grpContainer.Controls.Add(this.label2);
             this.grpContainer.Controls.Add(this.label1);
             this.grpContainer.Font = new System.Drawing.Font("Times New Roman", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpContainer.Location = new System.Drawing.Point(12, 82);
+            this.grpContainer.Location = new System.Drawing.Point(89, 136);
             this.grpContainer.Name = "grpContainer";
             this.grpContainer.Size = new System.Drawing.Size(1163, 426);
             this.grpContainer.TabIndex = 1;
@@ -197,6 +197,7 @@
             this.btnclose.TabIndex = 15;
             this.btnclose.Text = "CLOSE";
             this.btnclose.UseVisualStyleBackColor = true;
+            this.btnclose.Click += new System.EventHandler(this.Btnclose_Click);
             // 
             // btndelete
             // 
@@ -348,7 +349,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Times New Roman", 36F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(306, 25);
+            this.label11.Location = new System.Drawing.Point(383, 79);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(536, 54);
             this.label11.TabIndex = 35;
@@ -358,11 +359,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1202, 535);
+            this.ClientSize = new System.Drawing.Size(1370, 704);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.grpContainer);
             this.Name = "doctors";
             this.Text = "doctors";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Doctors_Load);
             this.grpContainer.ResumeLayout(false);
             this.grpContainer.PerformLayout();

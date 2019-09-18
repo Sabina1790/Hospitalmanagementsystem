@@ -37,28 +37,34 @@ namespace Hospital_Management_System
             if (txtcabinno.Text == "")
             {
                 MessageBox.Show("Provide Staff No: Full information required");
-            }
-           else if (txtroomno.Text == "")
+                return;
+            }           
+            else if (txtroomno.Text == "")
             {
                 MessageBox.Show("Provide Staff Name: Full information required");
+                return;
             }
             else if (cmbcabintype.Text == "")
             {
                 MessageBox.Show("Provide Category: Full information required");
+                return;
             }
            else if (txtdoctoravailable.Text == "")
             {
                 MessageBox.Show("Provide Ward No: Full information required");
+                return;
             }
-            else if (txtstaffavailable.Text == "")
+           else if (txtstaffavailable.Text == "")
             {
                 MessageBox.Show("Provide Qualification: Full information required");
+                return;
             }
-            else if (DublicateCabin() == true)
+             else if (DublicateCabin() == true)
             {
                 MessageBox.Show("cabin with same name already exists");
                 txtcabinno.Clear();
                 txtcabinno.Focus();
+                return;
             }
             { CreateCabin(); }
         }
@@ -78,7 +84,7 @@ namespace Hospital_Management_System
                        1);
                 if (res == true)
                 {
-                    //display message of adding memeber in database
+                    //display message of adding cabin in database
                     MessageBox.Show("Success to Add Cabin");
                     dgvcabindetails.DataSource = cc.GetAllCabins();
                     HelperClass.makeFieldsBlank(grpContainer);
@@ -158,6 +164,7 @@ namespace Hospital_Management_System
 
         private void Btndelete_Click(object sender, EventArgs e)
         {
+            DialogResult dr = MessageBox.Show("Are you surely want to delete?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             //try catch exception
             try
             {
@@ -170,7 +177,8 @@ namespace Hospital_Management_System
                        3);
                 if (res == true)
                 {
-                    //display message of adding memeber in database
+                   
+                    //display message of adding cabin in database
                     MessageBox.Show("Success to Delete Cabin");
                     dgvcabindetails.DataSource = cc.GetAllCabins();
                     HelperClass.makeFieldsBlank(grpContainer);
@@ -205,6 +213,11 @@ namespace Hospital_Management_System
 
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void Btnclose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

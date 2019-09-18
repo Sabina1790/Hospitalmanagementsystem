@@ -31,56 +31,69 @@ namespace Hospital_Management_System
             if (txtstaffno.Text == "")
             {
                 MessageBox.Show("Provide Staff No: Full information required");
+                return;
             }
-            if (txtstaffname.Text == "")
+            else if (txtstaffname.Text == "")
             {
                 MessageBox.Show("Provide Staff Name: Full information required");
+                return;
             }
-            if (txtcategory.Text == "")
+            else if (txtcategory.Text == "")
             {
                 MessageBox.Show("Provide Category: Full information required");
+                return;
             }
-            if (txtwardno.Text == "")
+            else if (txtwardno.Text == "")
             {
                 MessageBox.Show("Provide Ward No: Full information required");
+                return;
             }
-            if (txtqualification.Text == "")
+            else if (txtqualification.Text == "")
             {
                 MessageBox.Show("Provide Qualification: Full information required");
+                return;
             }
-            if (dtpdob.Text == "")
+            else if (dtpdob.Text == "")
             {
                 MessageBox.Show("Provide DOB: Full information required");
+                return;
             }
-            if (cmbgender.SelectedIndex == -1)
+            else if (cmbgender.SelectedIndex == -1)
             {
                 MessageBox.Show("Provide Gender: Full information required");
+                return;
             }
-            if (cmbmaritalstatus.SelectedIndex == -1)
+            else if (cmbmaritalstatus.SelectedIndex == -1)
             {
                 MessageBox.Show("Provide Maritial Stattus: Full information required");
+                return;
             }
-            if (cmbbloodgroup.SelectedIndex == -1)
+            else if (cmbbloodgroup.SelectedIndex == -1)
             {
                 MessageBox.Show("Provide Blood Group: Full information required");
+                return;
             }
-            if (dtpdutytime.Text == "")
+            else if (dtpdutytime.Text == "")
             {
                 MessageBox.Show("Provide Duty Time: Full information required");
+                return;
             }
-            if (dtpendtime.Text == "")
+            else if (dtpendtime.Text == "")
             {
                 MessageBox.Show("Provide end Time: Full information required");
+                return;
             }
-            if (btnbrowse.Text == "")
+            else if (btnbrowse.Text == "")
             {
                 MessageBox.Show("Provide Image: Full information required");
+                return;
             }
             else if (DublicateStaff() == true)
             {
                 MessageBox.Show("Staff with same name already exists");
                 txtstaffname.Clear();
                 txtstaffname.Focus();
+                return;
             }
             { CreateStaff(); }
         }
@@ -107,7 +120,7 @@ namespace Hospital_Management_System
                        1);
                 if (res == true)
                 {
-                    //display message of adding memeber in database
+                    //display message of adding staff in database
                     MessageBox.Show("Success to Add staff");
                     dgvstaffdetails.DataSource = stc.GetAllStaffs();
                     HelperClass.makeFieldsBlank(grpContainer);
@@ -129,7 +142,7 @@ namespace Hospital_Management_System
         }
 
 
-        //helps in data store as if users have same information
+        //helps in data store as if staffs have same information
         public bool DublicateStaff()
         {
             int x = 0;
@@ -174,7 +187,7 @@ namespace Hospital_Management_System
                        2);
                 if (res == true)
                 {
-                    //display message of adding memeber in database
+                    //display message of adding staff in database
                     MessageBox.Show("Success to Update staff");
                     dgvstaffdetails.DataSource = stc.GetAllStaffs();
                     HelperClass.makeFieldsBlank(grpContainer);
@@ -197,6 +210,7 @@ namespace Hospital_Management_System
 
         private void Btndelete_Click(object sender, EventArgs e)
         {
+            DialogResult dr = MessageBox.Show("Are you surely want to delete?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             try
             {
                 bool res = blc.StaffTable(StaffId,
@@ -215,7 +229,7 @@ namespace Hospital_Management_System
                        3);
                 if (res == true)
                 {
-                    //display message of adding memeber in database
+                    //display message of adding staff in database
                     MessageBox.Show("Success to Delete staff");
                     dgvstaffdetails.DataSource = stc.GetAllStaffs();
                     HelperClass.makeFieldsBlank(grpContainer);
@@ -296,6 +310,11 @@ namespace Hospital_Management_System
         private void Staff_Load(object sender, EventArgs e)
         {
             dgvstaffdetails.DataSource = stc.GetAllStaffs();
+        }
+
+        private void Btnclose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -80,7 +80,7 @@ namespace Business_Logic_Layer
             DateTime DOB,
             String Gender,
             String Address,
-            String ReferringRate,
+            int ReferringRate,
             String BloodGroup,
             byte[] Image,
             int Mode)
