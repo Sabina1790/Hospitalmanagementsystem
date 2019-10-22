@@ -130,7 +130,7 @@
             this.dgvuserdetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvuserdetails.Size = new System.Drawing.Size(418, 222);
             this.dgvuserdetails.TabIndex = 35;
-            this.dgvuserdetails.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dgvuserdetails_CellContentClick);
+            this.dgvuserdetails.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvuserdetails_CellClick);
             // 
             // btnclose
             // 

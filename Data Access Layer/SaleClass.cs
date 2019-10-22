@@ -14,14 +14,13 @@ namespace Data_Access_Layer
         public int SaleTable(int SaleId,
             int VisitorNo,
             String PatientName,
-            int ReferringNo,
             String DoctorName,
             String ReferredMedicines,
             int SalesPrice,
             int Quantity,
             int TotalPrice,
-            byte[] Image1,
-            byte[] Image2,
+            int Discount,
+            int GrandTotal,
             int Mode)
         {
             try
@@ -31,14 +30,13 @@ namespace Data_Access_Layer
                 cmd.Parameters.AddWithValue("@SaleId", SaleId);
                 cmd.Parameters.AddWithValue("@VisitorNo", VisitorNo);
                 cmd.Parameters.AddWithValue("@PatientName", PatientName);
-                cmd.Parameters.AddWithValue("@ReferringNo", ReferringNo);
                 cmd.Parameters.AddWithValue("@DoctorName", DoctorName);
                 cmd.Parameters.AddWithValue("@ReferredMedicines", ReferredMedicines);
                 cmd.Parameters.AddWithValue("@SalesPrice", SalesPrice);
                 cmd.Parameters.AddWithValue("@Quantity", Quantity);
                 cmd.Parameters.AddWithValue("@TotalPrice", TotalPrice);
-                cmd.Parameters.AddWithValue("@Image1", Image1);
-                cmd.Parameters.AddWithValue("@Image2", Image2);
+                cmd.Parameters.AddWithValue("@Discount", Discount);
+                cmd.Parameters.AddWithValue("@GrandPrice", GrandTotal);
                 cmd.Parameters.AddWithValue("@Mode", Mode);
                 conn.Open();
                 int result = cmd.ExecuteNonQuery();

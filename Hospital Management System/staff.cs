@@ -281,7 +281,17 @@ namespace Hospital_Management_System
             }
         }
 
-        private void Dgvstaffdetails_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void Staff_Load(object sender, EventArgs e)
+        {
+            dgvstaffdetails.DataSource = stc.GetAllStaffs();
+        }
+
+        private void Btnclose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void dgvstaffdetails_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
@@ -305,16 +315,6 @@ namespace Hospital_Management_System
 
                 MessageBox.Show(ex.Message);
             }
-        }
-
-        private void Staff_Load(object sender, EventArgs e)
-        {
-            dgvstaffdetails.DataSource = stc.GetAllStaffs();
-        }
-
-        private void Btnclose_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
     }
 }

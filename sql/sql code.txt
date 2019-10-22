@@ -78,20 +78,17 @@ end
 
 
 
-Create Table MedicineTable
+Create Table MedicinesTable
 (
 MedicineId int identity(1,1) primary key,
 VisitorNo numeric(15),
 PatientName varchar(50),
-ReferringNo numeric(15),
 DoctorName varchar(50),
 ReferredMedicines varchar(100),
 MfgDate date,
 ExpiredDate date,
 SupplierName varchar(50),
-CompanyName varchar(50),
-Image1 image,
-Image2 image
+CompanyName varchar(50)
 )
 
 Create Procedure SP_ManageMedicines
@@ -99,31 +96,28 @@ Create Procedure SP_ManageMedicines
 @MedicineId int,
 @VisitorNo numeric(15),
 @PatientName varchar(50),
-@ReferringNo numeric(15),
 @DoctorName varchar(50),
 @ReferredMedicines varchar(100),
 @MfgDate date,
 @ExpiredDate date,
 @SupplierName varchar(50),
 @CompanyName varchar(50),
-@Image1 image,
-@Image2 image,
 @Mode int
 )
 as
 begin
 if(@Mode=1)
-insert into MedicineTable(VisitorNo,PatientName,ReferringNo,DoctorName,ReferredMedicines,MfgDate,
-ExpiredDate,SupplierName,CompanyName,Image1,Image2) values
-(@VisitorNo,@PatientName,@ReferringNo,@DoctorName,@ReferredMedicines,@MfgDate,@ExpiredDate,@SupplierName,
-@CompanyName,@Image1,@Image2)
+insert into MedicinesTable(VisitorNo,PatientName,DoctorName,ReferredMedicines,MfgDate,
+ExpiredDate,SupplierName,CompanyName) values
+(@VisitorNo,@PatientName,@DoctorName,@ReferredMedicines,@MfgDate,@ExpiredDate,@SupplierName,
+@CompanyName)
 if (@Mode=2)
-Update MedicineTable set VisitorNo=@VisitorNo,PatientName=@PatientName,ReferringNo=@ReferringNo,DoctorName=@DoctorName,
+Update MedicinesTable set VisitorNo=@VisitorNo,PatientName=@PatientName,DoctorName=@DoctorName,
 ReferredMedicines=@ReferredMedicines,MfgDate=@MfgDate,ExpiredDate=@ExpiredDate,SupplierName=@SupplierName,
-CompanyName=@CompanyName,Image1=@Image1,Image2=@Image2
+CompanyName=@CompanyName
 where MedicineId=@MedicineId
 if(@Mode=3)
-Delete from MedicineTable where MedicineId=@MedicineId
+Delete from MedicinesTable where MedicineId=@MedicineId
 end
 
 
@@ -273,5 +267,39 @@ Update UserTable set UserName=@UserName,Password=@Password,Role=@Role
 where UserId=@UserId
 if(@Mode=3)
 Delete from UserTable where UserId=@UserId
+end
+
+
+
+Create Table others
+(
+Id int identity(1,1) primary key,
+AmbulanceDriver varchar(50),
+Contact numeric(20),
+Doctorsfee numeric(20),
+Staffsfee numeric(20),
+Date date
+)
+
+Create Procedure SP_ManageOthers
+(
+@Id int,
+@AmbulanceDriver varchar(50),
+@Contact numeric(20),
+@Doctorsfee numeric(20),
+@Staffsfee numeric(20),
+@Date date,
+@Mode int
+)
+as
+begin
+if(@Mode=1)
+insert into others(AmbulanceDriver,Contact,Doctorsfee,Staffsfee,Date) values
+(@AmbulanceDriver,@Contact,@Doctorsfee,@Staffsfee,@Date)
+if (@Mode=2)
+Update others set AmbulanceDriver=@AmbulanceDriver,Contact=@Contact,Doctorsfee=@Doctorsfee,Staffsfee=@Staffsfee,Date=@Date
+where Id=@Id
+if(@Mode=3)
+Delete from others where Id=@Id
 end
 

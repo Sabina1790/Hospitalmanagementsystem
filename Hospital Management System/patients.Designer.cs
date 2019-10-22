@@ -128,7 +128,7 @@
             this.dgvpatientsdetails.Name = "dgvpatientsdetails";
             this.dgvpatientsdetails.Size = new System.Drawing.Size(1159, 161);
             this.dgvpatientsdetails.TabIndex = 35;
-            this.dgvpatientsdetails.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dgvpatientsdetails_CellContentClick);
+            this.dgvpatientsdetails.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvpatientsdetails_CellClick);
             // 
             // btnbrowse
             // 

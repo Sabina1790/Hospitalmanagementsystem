@@ -102,25 +102,22 @@ namespace Business_Logic_Layer
                 throw ex;
             }
         }
-        public bool MedicineTable(int MedicineId,
+        public bool MedicinesTable(int MedicineId,
             int VisitorNo,
             String PatientName,
-            int ReferringNo,
             String DoctorName,
             String ReferredMedicines,
             DateTime MfgDate,
             DateTime ExpiredDate,
             String SupplierName,
             String CompanyName,
-            byte[] Image1,
-            byte[] Image2,
             int Mode)
         {
             try
             {
                 bool result = false;
-                int conn = mc.MedicineTable(MedicineId, VisitorNo,PatientName,ReferringNo,DoctorName,ReferredMedicines,MfgDate,
-                   ExpiredDate,SupplierName,CompanyName,Image1,Image2, Mode);
+                int conn = mc.MedicinesTable(MedicineId, VisitorNo,PatientName,DoctorName,ReferredMedicines,MfgDate,
+                   ExpiredDate,SupplierName,CompanyName, Mode);
                 if (conn > 0)
                     result = true;
                 else
@@ -136,21 +133,20 @@ namespace Business_Logic_Layer
         public bool SaleTable(int SaleId,
             int VisitorNo,
             String PatientName,
-            int ReferringNo,
             String DoctorName,
             String ReferredMedicines,
             int SalesPrice,
             int Quantity,
             int TotalPrice,
-            byte[] Image1,
-            byte[] Image2,
+            int Discount,
+            int GrandTotal,
             int Mode)
         {
             try
             {
                 bool result = false;
-                int conn = sc.SaleTable(SaleId, VisitorNo, PatientName, ReferringNo, DoctorName, ReferredMedicines, SalesPrice,Quantity,
-                   TotalPrice, Image1, Image2, Mode);
+                int conn = sc.SaleTable(SaleId, VisitorNo, PatientName,  DoctorName, ReferredMedicines, SalesPrice,Quantity,
+                    TotalPrice, Discount, GrandTotal, Mode);
                 if (conn > 0)
                     result = true;
                 else

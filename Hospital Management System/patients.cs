@@ -168,30 +168,6 @@ namespace Hospital_Management_System
 
         }
 
-        private void Dgvpatientsdetails_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                PatientId = Convert.ToInt32(dgvpatientsdetails.SelectedRows[0].Cells["PatientId"].Value.ToString());
-                txtvisitorno.Text = dgvpatientsdetails.SelectedRows[0].Cells["VisitorNo"].Value.ToString();
-                txttitle.Text = dgvpatientsdetails.SelectedRows[0].Cells["Title"].Value.ToString();
-                txtpatientname.Text = dgvpatientsdetails.SelectedRows[0].Cells["PatientName"].Value.ToString();
-                txtaddress.Text = dgvpatientsdetails.SelectedRows[0].Cells["Address"].Value.ToString();
-                txtcontactno.Text = dgvpatientsdetails.SelectedRows[0].Cells["ContactNo"].Value.ToString();
-                dtpdob.Text = dgvpatientsdetails.SelectedRows[0].Cells["DOB"].Value.ToString();
-                cmbgender.Text = dgvpatientsdetails.SelectedRows[0].Cells["Gender"].Value.ToString();
-                cmbpatienttype.Text = dgvpatientsdetails.SelectedRows[0].Cells["PatientType"].Value.ToString();
-                cmbmaritalstatus.Text = dgvpatientsdetails.SelectedRows[0].Cells["MaritialStatus"].Value.ToString();
-                cmbbloodgroup.Text = dgvpatientsdetails.SelectedRows[0].Cells["BloodGroup"].Value.ToString();
-                MemoryStream memoryStream = new MemoryStream((byte[])dgvpatientsdetails.SelectedRows[0].Cells["Image"].Value);
-                pictureBox1.Image = Image.FromStream(memoryStream);
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.Message);
-            }
-        }
 
         private void Btnbrowse_Click(object sender, EventArgs e)
         {
@@ -308,6 +284,31 @@ namespace Hospital_Management_System
         private void Btnclose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void dgvpatientsdetails_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                PatientId = Convert.ToInt32(dgvpatientsdetails.SelectedRows[0].Cells["PatientId"].Value.ToString());
+                txtvisitorno.Text = dgvpatientsdetails.SelectedRows[0].Cells["VisitorNo"].Value.ToString();
+                txttitle.Text = dgvpatientsdetails.SelectedRows[0].Cells["Title"].Value.ToString();
+                txtpatientname.Text = dgvpatientsdetails.SelectedRows[0].Cells["PatientName"].Value.ToString();
+                txtaddress.Text = dgvpatientsdetails.SelectedRows[0].Cells["Address"].Value.ToString();
+                txtcontactno.Text = dgvpatientsdetails.SelectedRows[0].Cells["ContactNo"].Value.ToString();
+                dtpdob.Text = dgvpatientsdetails.SelectedRows[0].Cells["DOB"].Value.ToString();
+                cmbgender.Text = dgvpatientsdetails.SelectedRows[0].Cells["Gender"].Value.ToString();
+                cmbpatienttype.Text = dgvpatientsdetails.SelectedRows[0].Cells["PatientType"].Value.ToString();
+                cmbmaritalstatus.Text = dgvpatientsdetails.SelectedRows[0].Cells["MaritialStatus"].Value.ToString();
+                cmbbloodgroup.Text = dgvpatientsdetails.SelectedRows[0].Cells["BloodGroup"].Value.ToString();
+                MemoryStream memoryStream = new MemoryStream((byte[])dgvpatientsdetails.SelectedRows[0].Cells["Image"].Value);
+                pictureBox1.Image = Image.FromStream(memoryStream);
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

@@ -11,18 +11,15 @@ namespace Data_Access_Layer
    public class MedicineClass
     {
         SqlConnection conn = new SqlConnection(ConnectionClass.ConnectionString);
-        public int MedicineTable(int MedicineId,
+        public int MedicinesTable(int MedicineId,
             int VisitorNo,
             String PatientName,
-            int ReferringNo,
             String DoctorName,
             String ReferredMedicines,
             DateTime MfgDate,
             DateTime ExpiredDate,
             String SupplierName,
             String CompanyName,
-            byte[] Image1,
-            byte[] Image2,
             int Mode)
         {
             try
@@ -32,15 +29,12 @@ namespace Data_Access_Layer
                 cmd.Parameters.AddWithValue("@MedicineId", MedicineId);
                 cmd.Parameters.AddWithValue("@VisitorNo", VisitorNo);
                 cmd.Parameters.AddWithValue("@PatientName", PatientName);
-                cmd.Parameters.AddWithValue("@ReferringNo", ReferringNo);
                 cmd.Parameters.AddWithValue("@DoctorName", DoctorName);
                 cmd.Parameters.AddWithValue("@ReferredMedicines", ReferredMedicines);
                 cmd.Parameters.AddWithValue("@MfgDate", MfgDate);
                 cmd.Parameters.AddWithValue("@ExpiredDate", ExpiredDate);
                 cmd.Parameters.AddWithValue("@SupplierName", SupplierName);
                 cmd.Parameters.AddWithValue("@CompanyName", CompanyName);
-                cmd.Parameters.AddWithValue("@Image1", Image1);
-                cmd.Parameters.AddWithValue("@Image2", Image2);
                 cmd.Parameters.AddWithValue("@Mode", Mode);
                 conn.Open();
                 int result = cmd.ExecuteNonQuery();
@@ -58,7 +52,7 @@ namespace Data_Access_Layer
             try
             {
                 DataTable dt = new DataTable();
-                SqlCommand cmd = new SqlCommand("Select * from MedicineTable", conn);
+                SqlCommand cmd = new SqlCommand("Select * from MedicinesTable", conn);
                 conn.Open();
                 SqlDataReader dr = cmd.ExecuteReader();
                 dt.Load(dr);

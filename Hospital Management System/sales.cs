@@ -12,6 +12,7 @@ using Business_Logic_Layer;
 using Microsoft.VisualBasic;
 using System.Text.RegularExpressions;
 using System.IO;
+using System.Data.SqlClient;
 
 namespace Hospital_Management_System
 {
@@ -21,12 +22,14 @@ namespace Hospital_Management_System
         {
             InitializeComponent();
         }
-        SaleClass sc = new SaleClass();
+        SqlConnection conn = new SqlConnection(ConnectionClass.ConnectionString);
+        MedicineClass mc = new MedicineClass();
         BusinessLogicLayer blc = new BusinessLogicLayer();
         HelperClass hc = new HelperClass();
-        public int SaleId;
         PatientClass pc = new PatientClass();
         DoctorClass dc = new DoctorClass();
+        SaleClass sc = new SaleClass();
+        public int SaleId;
 
         private void Btnadd_Click(object sender, EventArgs e)
         {
@@ -35,17 +38,12 @@ namespace Hospital_Management_System
                 MessageBox.Show("Provide Visitor No: Full information required");
                 return;
             }
-            else if (txtpatientname.Text == "")
+            else if (cmbpatientname.Text == "")
             {
                 MessageBox.Show("Provide patient Name: Full information required");
                 return;
             }
-            else if (txtreferringno.Text == "")
-            {
-                MessageBox.Show("Provide Referring No: Full information required");
-                return;
-            }
-            else if (txtdoctorsname.Text == "")
+            else if (cmbdoctorname.Text == "")
             {
                 MessageBox.Show("Provide Doctor Name: Full information required");
                 return;
@@ -70,14 +68,24 @@ namespace Hospital_Management_System
                 MessageBox.Show("Provide Total Price: Full information required");
                 return;
             }
-
-            else if (Dublicatesale() == true)
+            else if (txtdiscount.Text == "")
             {
-                MessageBox.Show("Already exists");
-                txtvisitorno.Clear();
-                txtvisitorno.Focus();
+                MessageBox.Show("Provide Discount: Full information required");
                 return;
             }
+            else if (txtgrandtotal.Text == "")
+            {
+                MessageBox.Show("Provide Grand Total Price: Full information required");
+                return;
+            }
+
+            //else if (Dublicatesale() == true)
+            //{
+            //    MessageBox.Show("Already exists");
+            //    cmbpatientname.Clear();
+            //    cmbpatientname.Focus();
+            //    return;
+            //}
             { CreateSale(); }
         }
 
@@ -89,15 +97,14 @@ namespace Hospital_Management_System
             {
                 bool res = blc.SaleTable(0,
                    Convert.ToInt32(txtvisitorno.Text),
-                   txtpatientname.Text,
-                   Convert.ToInt32(txtreferringno.Text),
-                   txtdoctorsname.Text,
+                   cmbpatientname.Text,
+                   cmbdoctorname.Text,
                    txtreferredmedicines.Text,
                    Convert.ToInt32(txtsalesprice.Text),
                    Convert.ToInt32(txtquantity.Text),
                    Convert.ToInt32(txttotalprice.Text),
-                   HelperClass.imageConverter(pictureBox1),
-                   HelperClass.imageConverter(pictureBox2),
+                   Convert.ToInt32(txtdiscount.Text),
+                   Convert.ToInt32(txtgrandtotal.Text),
                        1);
                 if (res == true)
                 {
@@ -105,8 +112,6 @@ namespace Hospital_Management_System
                     MessageBox.Show("Success to Add Sale");
                     dgvsalesdetails.DataSource = sc.GetAllSales();
                     HelperClass.makeFieldsBlank(grpContainer);
-                    pictureBox1.Image = null;
-                    pictureBox2.Image = null;
                 }
                 else
                 {
@@ -114,8 +119,6 @@ namespace Hospital_Management_System
                     MessageBox.Show("Couldn't Add selected sale");
                     dgvsalesdetails.DataSource = sc.GetAllSales();
                     HelperClass.makeFieldsBlank(grpContainer);
-                    pictureBox1.Image = null;
-                    pictureBox2.Image = null;
                 }
             }
             catch (Exception ex)
@@ -126,30 +129,30 @@ namespace Hospital_Management_System
 
 
         //helps in data store as if users have same information
-        public bool Dublicatesale()
-        {
-            int x = 0;
-            try
-            {
+        //public bool Dublicatesale()
+        //{
+        //    int x = 0;
+        //    try
+        //    {
 
-                for (int i = 0; i < dgvsalesdetails.Rows.Count; i++)
-                {
-                    if (txtvisitorno.Text == dgvsalesdetails.Rows[i].Cells["VisitirNo"].Value.ToString())
-                        x = 1;
-                }
+        //        for (int i = 0; i < dgvsalesdetails.Rows.Count; i++)
+        //        {
+        //            if (txtvisitorno.Text == dgvsalesdetails.Rows[i].Cells["PatientName"].Value.ToString())
+        //                x = 1;
+        //        }
 
-            }
-            catch (Exception ex)
-            {
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-                MessageBox.Show(ex.Message);
-            }
-            if (x == 1)
-                return true;
-            else
-                return false;
+        //        MessageBox.Show(ex.Message);
+        //    }
+        //    if (x == 1)
+        //        return true;
+        //    else
+        //        return false;
 
-        }
+        //}
 
         private void Btnupdate_Click(object sender, EventArgs e)
         {
@@ -157,15 +160,14 @@ namespace Hospital_Management_System
             {
                 bool res = blc.SaleTable(SaleId,
                    Convert.ToInt32(txtvisitorno.Text),
-                   txtpatientname.Text,
-                   Convert.ToInt32(txtreferringno.Text),
-                   txtdoctorsname.Text,
+                   cmbpatientname.Text,
+                   cmbdoctorname.Text,
                    txtreferredmedicines.Text,
                    Convert.ToInt32(txtsalesprice.Text),
                    Convert.ToInt32(txtquantity.Text),
                    Convert.ToInt32(txttotalprice.Text),
-                   HelperClass.imageConverter(pictureBox1),
-                   HelperClass.imageConverter(pictureBox2),
+                   Convert.ToInt32(txtdiscount.Text),
+                   Convert.ToInt32(txtgrandtotal.Text),
                        2);
                 if (res == true)
                 {
@@ -173,8 +175,6 @@ namespace Hospital_Management_System
                     MessageBox.Show("Success to Update Sale");
                     dgvsalesdetails.DataSource = sc.GetAllSales();
                     HelperClass.makeFieldsBlank(grpContainer);
-                    pictureBox1.Image = null;
-                    pictureBox2.Image = null;
                 }
                 else
                 {
@@ -182,8 +182,6 @@ namespace Hospital_Management_System
                     MessageBox.Show("Couldn't Update selected sale");
                     dgvsalesdetails.DataSource = sc.GetAllSales();
                     HelperClass.makeFieldsBlank(grpContainer);
-                    pictureBox1.Image = null;
-                    pictureBox2.Image = null;
                 }
             }
             catch (Exception ex)
@@ -199,15 +197,14 @@ namespace Hospital_Management_System
             {
                 bool res = blc.SaleTable(SaleId,
                    Convert.ToInt32(txtvisitorno.Text),
-                   txtpatientname.Text,
-                   Convert.ToInt32(txtreferringno.Text),
-                   txtdoctorsname.Text,
+                   cmbpatientname.Text,
+                   cmbdoctorname.Text,
                    txtreferredmedicines.Text,
                    Convert.ToInt32(txtsalesprice.Text),
                    Convert.ToInt32(txtquantity.Text),
                    Convert.ToInt32(txttotalprice.Text),
-                   HelperClass.imageConverter(pictureBox1),
-                   HelperClass.imageConverter(pictureBox2),
+                   Convert.ToInt32(txtdiscount.Text),
+                   Convert.ToInt32(txtgrandtotal.Text),
                        3);
                 if (res == true)
                 {
@@ -215,8 +212,6 @@ namespace Hospital_Management_System
                     MessageBox.Show("Success to Delete Sale");
                     dgvsalesdetails.DataSource = sc.GetAllSales();
                     HelperClass.makeFieldsBlank(grpContainer);
-                    pictureBox1.Image = null;
-                    pictureBox2.Image = null;
                 }
                 else
                 {
@@ -224,8 +219,6 @@ namespace Hospital_Management_System
                     MessageBox.Show("Couldn't Delete selected sale");
                     dgvsalesdetails.DataSource = sc.GetAllSales();
                     HelperClass.makeFieldsBlank(grpContainer);
-                    pictureBox1.Image = null;
-                    pictureBox2.Image = null;
                 }
             }
             catch (Exception ex)
@@ -240,16 +233,14 @@ namespace Hospital_Management_System
             {
                 SaleId = Convert.ToInt32(dgvsalesdetails.SelectedRows[0].Cells["SaleId"].Value.ToString());
                 txtvisitorno.Text = dgvsalesdetails.SelectedRows[0].Cells["VisitorNo"].Value.ToString();
-                txtpatientname.Text = dgvsalesdetails.SelectedRows[0].Cells["PatientName"].Value.ToString();
-                txtreferringno.Text = dgvsalesdetails.SelectedRows[0].Cells["ReferringNo"].Value.ToString();
-                txtdoctorsname.Text = dgvsalesdetails.SelectedRows[0].Cells["DoctorName"].Value.ToString();
+                cmbpatientname.Text = dgvsalesdetails.SelectedRows[0].Cells["PatientName"].Value.ToString();
+                cmbdoctorname.Text = dgvsalesdetails.SelectedRows[0].Cells["DoctorName"].Value.ToString();
                 txtreferredmedicines.Text = dgvsalesdetails.SelectedRows[0].Cells["ReferredMedicines"].Value.ToString();
                 txtsalesprice.Text = dgvsalesdetails.SelectedRows[0].Cells["SalesPrice"].Value.ToString();
                 txtquantity.Text = dgvsalesdetails.SelectedRows[0].Cells["Quantity"].Value.ToString();
                 txttotalprice.Text = dgvsalesdetails.SelectedRows[0].Cells["TotalPrice"].Value.ToString();
-                MemoryStream memoryStream = new MemoryStream((byte[])dgvsalesdetails.SelectedRows[0].Cells["Image"].Value);
-                pictureBox1.Image = Image.FromStream(memoryStream);
-                pictureBox2.Image = Image.FromStream(memoryStream);
+                txtdiscount.Text = dgvsalesdetails.SelectedRows[0].Cells["Discount"].Value.ToString();
+                txtgrandtotal.Text = dgvsalesdetails.SelectedRows[0].Cells["GrandTotal"].Value.ToString();
             }
             catch (Exception ex)
             {
@@ -261,7 +252,15 @@ namespace Hospital_Management_System
         private void Sales_Load(object sender, EventArgs e)
         {
             dgvsalesdetails.DataSource = sc.GetAllSales();
-            
+            cmbpatientname.DataSource = pc.GetAllPatients();
+            cmbdoctorname.DataSource = mc.GetAllmedicines();
+            cmbpatientname.DisplayMember = "PatientName";
+            cmbpatientname.ValueMember = "PatientName";
+            cmbpatientname.SelectedValue = -1;
+            cmbdoctorname.DisplayMember = "DoctorName";
+            cmbdoctorname.ValueMember = "DoctorName";
+            cmbdoctorname.SelectedValue = -1;
+
         }
 
         private void Btnclose_Click(object sender, EventArgs e)
@@ -272,6 +271,60 @@ namespace Hospital_Management_System
         private void Btnprint_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void cmbpatientname_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand("Select * from PatientTable where PatientName ='" + cmbpatientname.Text + "'", conn);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                SqlDataReader dr;
+                dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    string VisitorNo = (string)dr["VisitorNo"].ToString();
+                    txtvisitorno.Text = VisitorNo;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        private void cmbdoctorname_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand("Select * from MedicinesTable where DoctorName ='" + cmbdoctorname.Text + "'", conn);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                SqlDataReader dr;
+                dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    string ReferredMedicines = (string)dr["ReferredMedicines"].ToString();
+                    txtreferredmedicines.Text = ReferredMedicines;
+                    return;
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
     }
 }

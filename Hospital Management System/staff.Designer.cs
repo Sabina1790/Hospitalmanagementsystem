@@ -175,7 +175,7 @@
             this.dgvstaffdetails.Name = "dgvstaffdetails";
             this.dgvstaffdetails.Size = new System.Drawing.Size(1159, 189);
             this.dgvstaffdetails.TabIndex = 35;
-            this.dgvstaffdetails.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dgvstaffdetails_CellContentClick);
+            this.dgvstaffdetails.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvstaffdetails_CellClick);
             // 
             // btnbrowse
             // 

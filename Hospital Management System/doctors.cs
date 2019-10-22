@@ -272,7 +272,18 @@ namespace Hospital_Management_System
             }
         }
 
-        private void Dgvdoctorsdetails_CellContentClick(object sender, DataGridViewCellEventArgs e)
+
+        private void Doctors_Load(object sender, EventArgs e)
+        {
+            dgvdoctorsdetails.DataSource = dc.GetAllDoctors();
+        }
+
+        private void Btnclose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void dgvdoctorsdetails_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
@@ -295,16 +306,6 @@ namespace Hospital_Management_System
 
                 MessageBox.Show(ex.Message);
             }
-        }
-
-        private void Doctors_Load(object sender, EventArgs e)
-        {
-            dgvdoctorsdetails.DataSource = dc.GetAllDoctors();
-        }
-
-        private void Btnclose_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
     }
 }
