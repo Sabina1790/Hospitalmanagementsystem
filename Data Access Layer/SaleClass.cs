@@ -36,7 +36,7 @@ namespace Data_Access_Layer
                 cmd.Parameters.AddWithValue("@Quantity", Quantity);
                 cmd.Parameters.AddWithValue("@TotalPrice", TotalPrice);
                 cmd.Parameters.AddWithValue("@Discount", Discount);
-                cmd.Parameters.AddWithValue("@GrandPrice", GrandTotal);
+                cmd.Parameters.AddWithValue("@GrandTotal", GrandTotal);
                 cmd.Parameters.AddWithValue("@Mode", Mode);
                 conn.Open();
                 int result = cmd.ExecuteNonQuery();

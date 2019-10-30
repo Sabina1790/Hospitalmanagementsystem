@@ -45,6 +45,7 @@
     <Compile Include="ConnectionClass.cs" />
     <Compile Include="DoctorClass.cs" />
     <Compile Include="MedicineClass.cs" />
+    <Compile Include="others.cs" />
     <Compile Include="PatientClass.cs" />
     <Compile Include="SaleClass.cs" />
     <Compile Include="StaffClass.cs" />

@@ -33,6 +33,17 @@ namespace Hospital_Management_System
 
         private void Btnadd_Click(object sender, EventArgs e)
         {
+            //Get Product Name, Rate and Qty customer wants to buy
+            decimal Rate = decimal.Parse(txtsalesprice.Text);
+            decimal Qty = decimal.Parse(txtquantity.Text);
+
+            decimal SubTotal = Rate * Qty; //Total=RatexQty
+
+            //Display the Subtotal in textbox
+            //Get the subtotal value from textbox
+            decimal subTotal = decimal.Parse(txttotalprice.Text);
+
+
             if (txtvisitorno.Text == "")
             {
                 MessageBox.Show("Provide Visitor No: Full information required");
@@ -227,27 +238,6 @@ namespace Hospital_Management_System
             }
         }
 
-        private void Dgvsalesdetails_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                SaleId = Convert.ToInt32(dgvsalesdetails.SelectedRows[0].Cells["SaleId"].Value.ToString());
-                txtvisitorno.Text = dgvsalesdetails.SelectedRows[0].Cells["VisitorNo"].Value.ToString();
-                cmbpatientname.Text = dgvsalesdetails.SelectedRows[0].Cells["PatientName"].Value.ToString();
-                cmbdoctorname.Text = dgvsalesdetails.SelectedRows[0].Cells["DoctorName"].Value.ToString();
-                txtreferredmedicines.Text = dgvsalesdetails.SelectedRows[0].Cells["ReferredMedicines"].Value.ToString();
-                txtsalesprice.Text = dgvsalesdetails.SelectedRows[0].Cells["SalesPrice"].Value.ToString();
-                txtquantity.Text = dgvsalesdetails.SelectedRows[0].Cells["Quantity"].Value.ToString();
-                txttotalprice.Text = dgvsalesdetails.SelectedRows[0].Cells["TotalPrice"].Value.ToString();
-                txtdiscount.Text = dgvsalesdetails.SelectedRows[0].Cells["Discount"].Value.ToString();
-                txtgrandtotal.Text = dgvsalesdetails.SelectedRows[0].Cells["GrandTotal"].Value.ToString();
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.Message);
-            }
-        }
 
         private void Sales_Load(object sender, EventArgs e)
         {
@@ -268,10 +258,7 @@ namespace Hospital_Management_System
             this.Close();
         }
 
-        private void Btnprint_Click(object sender, EventArgs e)
-        {
-
-        }
+              
 
         private void cmbpatientname_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -286,6 +273,7 @@ namespace Hospital_Management_System
                 {
                     string VisitorNo = (string)dr["VisitorNo"].ToString();
                     txtvisitorno.Text = VisitorNo;
+                    return;
                 }
             }
             catch (Exception ex)
@@ -313,7 +301,6 @@ namespace Hospital_Management_System
                     string ReferredMedicines = (string)dr["ReferredMedicines"].ToString();
                     txtreferredmedicines.Text = ReferredMedicines;
                     return;
-
                 }
             }
             catch (Exception ex)
@@ -324,6 +311,93 @@ namespace Hospital_Management_System
             finally
             {
                 conn.Close();
+            }
+        }
+
+        private void txtdiscount_TextChanged(object sender, EventArgs e)
+        {
+            //Get the value fro discount textbox
+            string value = txtdiscount.Text;
+
+            if (value == "")
+            {
+                //Display Error Message
+                MessageBox.Show("Please Add Discount First");
+            }
+            else
+            {
+                //Get the discount in decimal value
+                decimal SubTotal = decimal.Parse(txttotalprice.Text);
+                decimal discount = decimal.Parse(txtdiscount.Text);
+
+                //Calculate the grandtotal based on discount
+                decimal grandTotal = ((100 - discount) / 100) * SubTotal;
+
+                //Display the GrandTotla in TextBox
+                txtgrandtotal.Text = grandTotal.ToString();
+            }
+        }
+
+
+        private void txtquantity_TextChanged(object sender, EventArgs e)
+        {
+            //Get the value fro discount textbox
+            string value = txtquantity.Text;
+
+            if (value == "")
+            {
+                //Display Error Message
+                MessageBox.Show("Please Add quantity First");
+            }
+            else
+            {
+                //Get the discount in decimal value
+                decimal Rate = decimal.Parse(txtsalesprice.Text);
+                decimal Qty = decimal.Parse(txtquantity.Text);
+
+                //Calculate the grandtotal based on discount
+                decimal SubTotal = Rate * Qty;
+
+                //Display the GrandTotla in TextBox
+                txttotalprice.Text = SubTotal.ToString();
+            }
+        }
+
+        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            e.Graphics.DrawString("Welcome to Hospital System", new Font("Arial", 22, FontStyle.Regular), Brushes.Black, new Point(10, 10));
+        }
+        Bitmap bmp;
+
+        private void btnprint_Click(object sender, EventArgs e)
+        {
+            printPreviewDialog1.Document = printDocument1;
+            //Graphics g = this.CreateGraphics();
+            //bmp = new Bitmap(this.Size.Width, this.Size.Height, g);
+            //Graphics mg = Graphics.FromImage(bmp);
+            //mg.CopyFromScreen(this.Location.X, this.Location.Y, 0, 0, this.Size);
+            printPreviewDialog1.ShowDialog();
+        }
+
+        private void dgvsalesdetails_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                SaleId = Convert.ToInt32(dgvsalesdetails.SelectedRows[0].Cells["SaleId"].Value.ToString());
+                txtvisitorno.Text = dgvsalesdetails.SelectedRows[0].Cells["VisitorNo"].Value.ToString();
+                cmbpatientname.Text = dgvsalesdetails.SelectedRows[0].Cells["PatientName"].Value.ToString();
+                cmbdoctorname.Text = dgvsalesdetails.SelectedRows[0].Cells["DoctorName"].Value.ToString();
+                txtreferredmedicines.Text = dgvsalesdetails.SelectedRows[0].Cells["ReferredMedicines"].Value.ToString();
+                txtsalesprice.Text = dgvsalesdetails.SelectedRows[0].Cells["SalesPrice"].Value.ToString();
+                txtquantity.Text = dgvsalesdetails.SelectedRows[0].Cells["Quantity"].Value.ToString();
+                txttotalprice.Text = dgvsalesdetails.SelectedRows[0].Cells["TotalPrice"].Value.ToString();
+                txtdiscount.Text = dgvsalesdetails.SelectedRows[0].Cells["Discount"].Value.ToString();
+                txtgrandtotal.Text = dgvsalesdetails.SelectedRows[0].Cells["GrandTotal"].Value.ToString();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
             }
         }
     }

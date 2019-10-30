@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(sales));
             this.panel1 = new System.Windows.Forms.Panel();
             this.label11 = new System.Windows.Forms.Label();
             this.grpContainer = new System.Windows.Forms.GroupBox();
@@ -49,12 +50,14 @@
             this.txtsalesprice = new System.Windows.Forms.TextBox();
             this.txtquantity = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtreferredmedicines = new System.Windows.Forms.TextBox();
             this.dgvsalesdetails = new System.Windows.Forms.DataGridView();
-            this.btnadd = new System.Windows.Forms.Button();
-            this.btnupdate = new System.Windows.Forms.Button();
-            this.btndelete = new System.Windows.Forms.Button();
+            this.txtreferredmedicines = new System.Windows.Forms.TextBox();
             this.btnclose = new System.Windows.Forms.Button();
+            this.btndelete = new System.Windows.Forms.Button();
+            this.btnupdate = new System.Windows.Forms.Button();
+            this.btnadd = new System.Windows.Forms.Button();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.panel1.SuspendLayout();
             this.grpContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvsalesdetails)).BeginInit();
@@ -198,6 +201,7 @@
             this.txtdiscount.Name = "txtdiscount";
             this.txtdiscount.Size = new System.Drawing.Size(172, 22);
             this.txtdiscount.TabIndex = 51;
+            this.txtdiscount.TextChanged += new System.EventHandler(this.txtdiscount_TextChanged);
             // 
             // btnprint
             // 
@@ -207,7 +211,7 @@
             this.btnprint.TabIndex = 50;
             this.btnprint.Text = "PRINT";
             this.btnprint.UseVisualStyleBackColor = true;
-            this.btnprint.Click += new System.EventHandler(this.Btnprint_Click);
+            this.btnprint.Click += new System.EventHandler(this.btnprint_Click);
             // 
             // label6
             // 
@@ -256,6 +260,7 @@
             this.txtquantity.Name = "txtquantity";
             this.txtquantity.Size = new System.Drawing.Size(172, 22);
             this.txtquantity.TabIndex = 7;
+            this.txtquantity.TextChanged += new System.EventHandler(this.txtquantity_TextChanged);
             // 
             // label5
             // 
@@ -266,13 +271,6 @@
             this.label5.TabIndex = 37;
             this.label5.Text = "Referred Medicines:";
             // 
-            // txtreferredmedicines
-            // 
-            this.txtreferredmedicines.Location = new System.Drawing.Point(161, 146);
-            this.txtreferredmedicines.Name = "txtreferredmedicines";
-            this.txtreferredmedicines.Size = new System.Drawing.Size(172, 22);
-            this.txtreferredmedicines.TabIndex = 5;
-            // 
             // dgvsalesdetails
             // 
             this.dgvsalesdetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -280,27 +278,25 @@
             this.dgvsalesdetails.Name = "dgvsalesdetails";
             this.dgvsalesdetails.Size = new System.Drawing.Size(1159, 196);
             this.dgvsalesdetails.TabIndex = 35;
-            this.dgvsalesdetails.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dgvsalesdetails_CellContentClick);
+            this.dgvsalesdetails.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvsalesdetails_CellClick);
             // 
-            // btnadd
+            // txtreferredmedicines
             // 
-            this.btnadd.Location = new System.Drawing.Point(718, 207);
-            this.btnadd.Name = "btnadd";
-            this.btnadd.Size = new System.Drawing.Size(98, 25);
-            this.btnadd.TabIndex = 9;
-            this.btnadd.Text = "ADD";
-            this.btnadd.UseVisualStyleBackColor = true;
-            this.btnadd.Click += new System.EventHandler(this.Btnadd_Click);
+            this.txtreferredmedicines.Location = new System.Drawing.Point(161, 146);
+            this.txtreferredmedicines.Multiline = true;
+            this.txtreferredmedicines.Name = "txtreferredmedicines";
+            this.txtreferredmedicines.Size = new System.Drawing.Size(172, 86);
+            this.txtreferredmedicines.TabIndex = 5;
             // 
-            // btnupdate
+            // btnclose
             // 
-            this.btnupdate.Location = new System.Drawing.Point(835, 207);
-            this.btnupdate.Name = "btnupdate";
-            this.btnupdate.Size = new System.Drawing.Size(98, 25);
-            this.btnupdate.TabIndex = 10;
-            this.btnupdate.Text = "UPDATE";
-            this.btnupdate.UseVisualStyleBackColor = true;
-            this.btnupdate.Click += new System.EventHandler(this.Btnupdate_Click);
+            this.btnclose.Location = new System.Drawing.Point(1074, 207);
+            this.btnclose.Name = "btnclose";
+            this.btnclose.Size = new System.Drawing.Size(98, 25);
+            this.btnclose.TabIndex = 12;
+            this.btnclose.Text = "CLOSE";
+            this.btnclose.UseVisualStyleBackColor = true;
+            this.btnclose.Click += new System.EventHandler(this.Btnclose_Click);
             // 
             // btndelete
             // 
@@ -312,15 +308,40 @@
             this.btndelete.UseVisualStyleBackColor = true;
             this.btndelete.Click += new System.EventHandler(this.Btndelete_Click);
             // 
-            // btnclose
+            // btnupdate
             // 
-            this.btnclose.Location = new System.Drawing.Point(1074, 207);
-            this.btnclose.Name = "btnclose";
-            this.btnclose.Size = new System.Drawing.Size(98, 25);
-            this.btnclose.TabIndex = 12;
-            this.btnclose.Text = "CLOSE";
-            this.btnclose.UseVisualStyleBackColor = true;
-            this.btnclose.Click += new System.EventHandler(this.Btnclose_Click);
+            this.btnupdate.Location = new System.Drawing.Point(835, 207);
+            this.btnupdate.Name = "btnupdate";
+            this.btnupdate.Size = new System.Drawing.Size(98, 25);
+            this.btnupdate.TabIndex = 10;
+            this.btnupdate.Text = "UPDATE";
+            this.btnupdate.UseVisualStyleBackColor = true;
+            this.btnupdate.Click += new System.EventHandler(this.Btnupdate_Click);
+            // 
+            // btnadd
+            // 
+            this.btnadd.Location = new System.Drawing.Point(718, 207);
+            this.btnadd.Name = "btnadd";
+            this.btnadd.Size = new System.Drawing.Size(98, 25);
+            this.btnadd.TabIndex = 9;
+            this.btnadd.Text = "ADD";
+            this.btnadd.UseVisualStyleBackColor = true;
+            this.btnadd.Click += new System.EventHandler(this.Btnadd_Click);
+            // 
+            // printDocument1
+            // 
+            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
+            // 
+            // printPreviewDialog1
+            // 
+            this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
+            this.printPreviewDialog1.Document = this.printDocument1;
+            this.printPreviewDialog1.Enabled = true;
+            this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
+            this.printPreviewDialog1.Name = "printPreviewDialog1";
+            this.printPreviewDialog1.Visible = false;
             // 
             // sales
             // 
@@ -370,5 +391,7 @@
         private System.Windows.Forms.Button btndelete;
         private System.Windows.Forms.Button btnupdate;
         private System.Windows.Forms.Button btnadd;
+        private System.Drawing.Printing.PrintDocument printDocument1;
+        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
     }
 }

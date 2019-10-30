@@ -179,7 +179,6 @@ namespace Hospital_Management_System
             this.Close();
         }
 
-
         private void dgvuserdetails_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try

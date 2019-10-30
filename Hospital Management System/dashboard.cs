@@ -51,5 +51,16 @@ namespace Hospital_Management_System
             medicines med = new medicines();
             med.Show();
         }
+
+        private void othersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            othersfacilities of = new othersfacilities();
+            of.Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

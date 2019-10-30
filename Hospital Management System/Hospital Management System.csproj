@@ -100,6 +100,12 @@
     <Compile Include="cabin.Designer.cs">
       <DependentUpon>cabin.cs</DependentUpon>
     </Compile>
+    <Compile Include="othersfacilities.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="othersfacilities.Designer.cs">
+      <DependentUpon>othersfacilities.cs</DependentUpon>
+    </Compile>
     <Compile Include="patients.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,6 +140,9 @@
     </Compile>
     <EmbeddedResource Include="billing.resx">
       <DependentUpon>billing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="othersfacilities.resx">
+      <DependentUpon>othersfacilities.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="search.resx">
       <DependentUpon>search.cs</DependentUpon>

@@ -16,6 +16,7 @@ namespace Business_Logic_Layer
         StaffClass stc = new StaffClass();
         MedicineClass mc = new MedicineClass();
         CabinClass cc = new CabinClass();
+        others o = new others();
 
 
         public bool UserTable(int UserId,
@@ -203,6 +204,30 @@ namespace Business_Logic_Layer
             {
                 bool result = false;
                 int conn = cc.CabinTable(CabinId,CabinNo,RoomNo,CabinType,Doctor,Staff, Mode);
+                if (conn > 0)
+                    result = true;
+                else
+                    result = false;
+                return result;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+        public bool Others(int Id,
+                String AmbulanceDriver,
+                int Contact,
+                int Doctorsfee,
+                int Staffsfee,
+                DateTime Date,
+            int Mode)
+        {
+            try
+            {
+                bool result = false;
+                int conn = o.Others(Id, AmbulanceDriver, Contact, Doctorsfee, Staffsfee, Date, Mode);
                 if (conn > 0)
                     result = true;
                 else
