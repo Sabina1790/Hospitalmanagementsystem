@@ -118,7 +118,7 @@
             // 
             // txtvisitorno
             // 
-            this.txtvisitorno.Location = new System.Drawing.Point(149, 73);
+            this.txtvisitorno.Location = new System.Drawing.Point(169, 68);
             this.txtvisitorno.Name = "txtvisitorno";
             this.txtvisitorno.Size = new System.Drawing.Size(172, 22);
             this.txtvisitorno.TabIndex = 67;
@@ -127,7 +127,7 @@
             // 
             this.cmbdoctorname.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbdoctorname.FormattingEnabled = true;
-            this.cmbdoctorname.Location = new System.Drawing.Point(149, 111);
+            this.cmbdoctorname.Location = new System.Drawing.Point(169, 106);
             this.cmbdoctorname.Name = "cmbdoctorname";
             this.cmbdoctorname.Size = new System.Drawing.Size(172, 24);
             this.cmbdoctorname.TabIndex = 66;
@@ -146,7 +146,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(49, 114);
+            this.label3.Location = new System.Drawing.Point(58, 114);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(94, 16);
             this.label3.TabIndex = 63;
@@ -155,7 +155,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(75, 77);
+            this.label4.Location = new System.Drawing.Point(77, 74);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(68, 16);
             this.label4.TabIndex = 64;
@@ -164,7 +164,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(56, 38);
+            this.label1.Location = new System.Drawing.Point(58, 38);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(87, 16);
             this.label1.TabIndex = 62;
@@ -265,7 +265,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(35, 152);
+            this.label5.Location = new System.Drawing.Point(32, 149);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(120, 16);
             this.label5.TabIndex = 37;
@@ -282,7 +282,7 @@
             // 
             // txtreferredmedicines
             // 
-            this.txtreferredmedicines.Location = new System.Drawing.Point(161, 146);
+            this.txtreferredmedicines.Location = new System.Drawing.Point(169, 146);
             this.txtreferredmedicines.Multiline = true;
             this.txtreferredmedicines.Name = "txtreferredmedicines";
             this.txtreferredmedicines.Size = new System.Drawing.Size(172, 86);

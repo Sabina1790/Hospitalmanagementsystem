@@ -211,11 +211,11 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Times New Roman", 36F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(256, 21);
+            this.label11.Location = new System.Drawing.Point(334, 21);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(461, 54);
+            this.label11.Size = new System.Drawing.Size(169, 54);
             this.label11.TabIndex = 38;
-            this.label11.Text = "DETAILS OF CABIN";
+            this.label11.Text = "Others ";
             // 
             // othersfacilities
             // 

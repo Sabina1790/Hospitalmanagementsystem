@@ -365,17 +365,16 @@ namespace Hospital_Management_System
 
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            e.Graphics.DrawString("Welcome to Hospital System", new Font("Arial", 22, FontStyle.Regular), Brushes.Black, new Point(10, 10));
+            e.Graphics.DrawImage(bmp, 0, 0);
         }
         Bitmap bmp;
 
         private void btnprint_Click(object sender, EventArgs e)
         {
-            printPreviewDialog1.Document = printDocument1;
-            //Graphics g = this.CreateGraphics();
-            //bmp = new Bitmap(this.Size.Width, this.Size.Height, g);
-            //Graphics mg = Graphics.FromImage(bmp);
-            //mg.CopyFromScreen(this.Location.X, this.Location.Y, 0, 0, this.Size);
+            Graphics g = this.CreateGraphics();
+            bmp = new Bitmap(this.Size.Width, this.Size.Height, g);
+            Graphics mg = Graphics.FromImage(bmp);
+            mg.CopyFromScreen(this.Location.X, this.Location.Y, 0, 0, this.Size);
             printPreviewDialog1.ShowDialog();
         }
 
