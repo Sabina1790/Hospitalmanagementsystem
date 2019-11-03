@@ -112,10 +112,10 @@
             this.dgvothers.AllowUserToAddRows = false;
             this.dgvothers.AllowUserToDeleteRows = false;
             this.dgvothers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvothers.Location = new System.Drawing.Point(66, 228);
+            this.dgvothers.Location = new System.Drawing.Point(81, 228);
             this.dgvothers.Name = "dgvothers";
             this.dgvothers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvothers.Size = new System.Drawing.Size(747, 99);
+            this.dgvothers.Size = new System.Drawing.Size(747, 113);
             this.dgvothers.TabIndex = 35;
             this.dgvothers.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvothers_CellContentClick);
             // 

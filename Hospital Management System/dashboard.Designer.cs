@@ -36,12 +36,12 @@
             this.patientsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.doctorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.medicinesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.salesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cabinToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.staffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.othersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.salesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.billingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.othersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -114,13 +114,6 @@
             this.medicinesToolStripMenuItem.Text = "Medicines";
             this.medicinesToolStripMenuItem.Click += new System.EventHandler(this.MedicinesToolStripMenuItem_Click);
             // 
-            // salesToolStripMenuItem
-            // 
-            this.salesToolStripMenuItem.Name = "salesToolStripMenuItem";
-            this.salesToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
-            this.salesToolStripMenuItem.Text = "Sales";
-            this.salesToolStripMenuItem.Click += new System.EventHandler(this.SalesToolStripMenuItem_Click);
-            // 
             // cabinToolStripMenuItem
             // 
             this.cabinToolStripMenuItem.Name = "cabinToolStripMenuItem";
@@ -135,6 +128,20 @@
             this.staffToolStripMenuItem.Text = "Staff";
             this.staffToolStripMenuItem.Click += new System.EventHandler(this.StaffToolStripMenuItem_Click);
             // 
+            // othersToolStripMenuItem
+            // 
+            this.othersToolStripMenuItem.Name = "othersToolStripMenuItem";
+            this.othersToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
+            this.othersToolStripMenuItem.Text = "Others";
+            this.othersToolStripMenuItem.Click += new System.EventHandler(this.othersToolStripMenuItem_Click);
+            // 
+            // salesToolStripMenuItem
+            // 
+            this.salesToolStripMenuItem.Name = "salesToolStripMenuItem";
+            this.salesToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
+            this.salesToolStripMenuItem.Text = "Sales";
+            this.salesToolStripMenuItem.Click += new System.EventHandler(this.SalesToolStripMenuItem_Click);
+            // 
             // billingToolStripMenuItem
             // 
             this.billingToolStripMenuItem.Name = "billingToolStripMenuItem";
@@ -148,13 +155,6 @@
             this.searchToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
             this.searchToolStripMenuItem.Text = "Search";
             // 
-            // othersToolStripMenuItem
-            // 
-            this.othersToolStripMenuItem.Name = "othersToolStripMenuItem";
-            this.othersToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
-            this.othersToolStripMenuItem.Text = "Others";
-            this.othersToolStripMenuItem.Click += new System.EventHandler(this.othersToolStripMenuItem_Click);
-            // 
             // dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -165,6 +165,7 @@
             this.Name = "dashboard";
             this.Text = "Hospital Management System";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.dashboard_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);

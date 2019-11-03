@@ -69,19 +69,9 @@ namespace Hospital_Management_System
                 MessageBox.Show("Provide Sales Price: Full information required");
                 return;
             }
-            else if (txtquantity.Text == "")
-            {
-                MessageBox.Show("Provide Quantity: Full information required");
-                return;
-            }
             else if (txttotalprice.Text == "")
             {
                 MessageBox.Show("Provide Total Price: Full information required");
-                return;
-            }
-            else if (txtdiscount.Text == "")
-            {
-                MessageBox.Show("Provide Discount: Full information required");
                 return;
             }
             else if (txtgrandtotal.Text == "")
@@ -111,11 +101,11 @@ namespace Hospital_Management_System
                    cmbpatientname.Text,
                    cmbdoctorname.Text,
                    txtreferredmedicines.Text,
-                   Convert.ToInt32(txtsalesprice.Text),
+                   Convert.ToDouble(txtsalesprice.Text),
                    Convert.ToInt32(txtquantity.Text),
-                   Convert.ToInt32(txttotalprice.Text),
-                   Convert.ToInt32(txtdiscount.Text),
-                   Convert.ToInt32(txtgrandtotal.Text),
+                   Convert.ToDouble(txttotalprice.Text),
+                   Convert.ToDouble(txtdiscount.Text),
+                   Convert.ToDouble(txtgrandtotal.Text),
                        1);
                 if (res == true)
                 {
@@ -174,11 +164,11 @@ namespace Hospital_Management_System
                    cmbpatientname.Text,
                    cmbdoctorname.Text,
                    txtreferredmedicines.Text,
-                   Convert.ToInt32(txtsalesprice.Text),
+                   Convert.ToDouble(txtsalesprice.Text),
                    Convert.ToInt32(txtquantity.Text),
-                   Convert.ToInt32(txttotalprice.Text),
-                   Convert.ToInt32(txtdiscount.Text),
-                   Convert.ToInt32(txtgrandtotal.Text),
+                   Convert.ToDouble(txttotalprice.Text),
+                   Convert.ToDouble(txtdiscount.Text),
+                   Convert.ToDouble(txtgrandtotal.Text),
                        2);
                 if (res == true)
                 {
@@ -211,11 +201,11 @@ namespace Hospital_Management_System
                    cmbpatientname.Text,
                    cmbdoctorname.Text,
                    txtreferredmedicines.Text,
-                   Convert.ToInt32(txtsalesprice.Text),
+                   Convert.ToDouble(txtsalesprice.Text),
                    Convert.ToInt32(txtquantity.Text),
-                   Convert.ToInt32(txttotalprice.Text),
-                   Convert.ToInt32(txtdiscount.Text),
-                   Convert.ToInt32(txtgrandtotal.Text),
+                   Convert.ToDouble(txttotalprice.Text),
+                   Convert.ToDouble(txtdiscount.Text),
+                   Convert.ToDouble(txtgrandtotal.Text),
                        3);
                 if (res == true)
                 {
@@ -223,6 +213,7 @@ namespace Hospital_Management_System
                     MessageBox.Show("Success to Delete Sale");
                     dgvsalesdetails.DataSource = sc.GetAllSales();
                     HelperClass.makeFieldsBlank(grpContainer);
+                    
                 }
                 else
                 {
@@ -259,7 +250,11 @@ namespace Hospital_Management_System
         }
 
               
-
+        /// <summary>
+        /// get data of visitorno
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmbpatientname_SelectedIndexChanged(object sender, EventArgs e)
         {
             try

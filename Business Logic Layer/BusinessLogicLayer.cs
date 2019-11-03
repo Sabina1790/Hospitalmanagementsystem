@@ -132,15 +132,15 @@ namespace Business_Logic_Layer
             }
         }
         public bool SaleTable(int SaleId,
-            int VisitorNo,
+           int VisitorNo,
             String PatientName,
             String DoctorName,
             String ReferredMedicines,
-            int SalesPrice,
+            Double SalesPrice,
             int Quantity,
-            int TotalPrice,
-            int Discount,
-            int GrandTotal,
+            Double TotalPrice,
+            Double Discount,
+            Double GrandTotal,
             int Mode)
         {
             try

@@ -16,11 +16,11 @@ namespace Data_Access_Layer
             String PatientName,
             String DoctorName,
             String ReferredMedicines,
-            int SalesPrice,
+            Double SalesPrice,
             int Quantity,
-            int TotalPrice,
-            int Discount,
-            int GrandTotal,
+            Double TotalPrice,
+            Double Discount,
+            Double GrandTotal,
             int Mode)
         {
             try

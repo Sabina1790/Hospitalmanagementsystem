@@ -60,6 +60,11 @@ namespace Hospital_Management_System
 
         private void button1_Click(object sender, EventArgs e)
         {
+            this.Close();
+        }
+
+        private void dashboard_Load(object sender, EventArgs e)
+        {
 
         }
     }
