@@ -21,8 +21,8 @@ GO
 
 CREATE TABLE [dbo].[CabinTable](
 	[CabinId] [int] IDENTITY(1,1) NOT NULL,
-	[CabinNo] [numeric](15, 2) NULL,
-	[RoomNo] [numeric](15, 2) NULL,
+	[CabinNo] [numeric](20, 0) NULL,
+	[RoomNo] [numeric](20, 0) NULL,
 	[CabinType] [varchar](50) NULL,
 	[Doctor] [varchar](50) NULL,
 	[Staff] [varchar](50) NULL,

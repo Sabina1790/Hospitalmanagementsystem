@@ -211,42 +211,45 @@ namespace Hospital_Management_System
         private void Btndelete_Click(object sender, EventArgs e)
         {
             DialogResult dr = MessageBox.Show("Are you surely want to delete?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            try
+            if (dr == DialogResult.Yes)
             {
-                bool res = blc.StaffTable(StaffId,
-                   Convert.ToInt32(txtstaffno.Text),
-                   txtstaffname.Text,
-                   txtcategory.Text,
-                   Convert.ToInt32(txtwardno.Text),
-                   txtqualification.Text,
-                   Convert.ToDateTime(dtpdob.Text),
-                   cmbgender.Text,
-                   cmbmaritalstatus.Text,
-                   cmbbloodgroup.Text,
-                   Convert.ToDateTime(dtpdutytime.Text),
-                   Convert.ToDateTime(dtpendtime.Text),
-                   HelperClass.imageConverter(pictureBox1),
-                       3);
-                if (res == true)
+                try
                 {
-                    //display message of adding staff in database
-                    MessageBox.Show("Success to Delete staff");
-                    dgvstaffdetails.DataSource = stc.GetAllStaffs();
-                    HelperClass.makeFieldsBlank(grpContainer);
-                    pictureBox1.Image = null;
+                    bool res = blc.StaffTable(StaffId,
+                       Convert.ToInt32(txtstaffno.Text),
+                       txtstaffname.Text,
+                       txtcategory.Text,
+                       Convert.ToInt32(txtwardno.Text),
+                       txtqualification.Text,
+                       Convert.ToDateTime(dtpdob.Text),
+                       cmbgender.Text,
+                       cmbmaritalstatus.Text,
+                       cmbbloodgroup.Text,
+                       Convert.ToDateTime(dtpdutytime.Text),
+                       Convert.ToDateTime(dtpendtime.Text),
+                       HelperClass.imageConverter(pictureBox1),
+                           3);
+                    if (res == true)
+                    {
+                        //display message of adding staff in database
+                        MessageBox.Show("Success to Delete staff");
+                        dgvstaffdetails.DataSource = stc.GetAllStaffs();
+                        HelperClass.makeFieldsBlank(grpContainer);
+                        pictureBox1.Image = null;
+                    }
+                    else
+                    {
+                        //display error message as data cannot be stored
+                        MessageBox.Show("Couldn't Delete selected staff");
+                        dgvstaffdetails.DataSource = stc.GetAllStaffs();
+                        HelperClass.makeFieldsBlank(grpContainer);
+                        pictureBox1.Image = null;
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    //display error message as data cannot be stored
-                    MessageBox.Show("Couldn't Delete selected staff");
-                    dgvstaffdetails.DataSource = stc.GetAllStaffs();
-                    HelperClass.makeFieldsBlank(grpContainer);
-                    pictureBox1.Image = null;
+                    MessageBox.Show(ex.Message);
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
             }
         }
 

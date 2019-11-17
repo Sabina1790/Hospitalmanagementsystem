@@ -102,7 +102,7 @@ namespace Hospital_Management_System
                    txtspeciality.Text,
                    Convert.ToInt32(txtcontact.Text),
                    Convert.ToDateTime(dtpdob.Text),
-                   cmbgender.Text,
+                   cmbgender.Text, 
                    txtaddress.Text,
                    Convert.ToInt32(txtreferringrate.Text),
                    cmbbloodgroup.Text,
@@ -187,6 +187,7 @@ namespace Hospital_Management_System
 
                 MessageBox.Show(ex.Message);
             }
+
         }
 
         private void Btnupdate_Click(object sender, EventArgs e)
@@ -233,45 +234,47 @@ namespace Hospital_Management_System
         private void Btndelete_Click(object sender, EventArgs e)
         {
             DialogResult dr = MessageBox.Show("Are you surely want to delete?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            //try catch exception
-            try
+            if (dr == DialogResult.Yes)
             {
-                bool res = blc.DoctorTable(DoctorId,
-                   Convert.ToInt32(txtreferringno.Text),
-                   txtfirstname.Text,
-                   txtlastname.Text,
-                   txtspeciality.Text,
-                   Convert.ToInt32(txtcontact.Text),
-                   Convert.ToDateTime(dtpdob.Text),
-                   cmbgender.Text,
-                   txtaddress.Text,
-                   Convert.ToInt32(txtreferringrate.Text),
-                   cmbbloodgroup.Text,
-                   HelperClass.imageConverter(pictureBox1),
-                       3);
-                if (res == true)
+                //try catch exception
+                try
                 {
-                    //display message of adding doctor in database
-                    MessageBox.Show("Success to Delete Doctor");
-                    dgvdoctorsdetails.DataSource = dc.GetAllDoctors();
-                    HelperClass.makeFieldsBlank(grpContainer);
-                    pictureBox1.Image = null;
+                    bool res = blc.DoctorTable(DoctorId,
+                       Convert.ToInt32(txtreferringno.Text),
+                       txtfirstname.Text,
+                       txtlastname.Text,
+                       txtspeciality.Text,
+                       Convert.ToInt32(txtcontact.Text),
+                       Convert.ToDateTime(dtpdob.Text),
+                       cmbgender.Text,
+                       txtaddress.Text,
+                       Convert.ToInt32(txtreferringrate.Text),
+                       cmbbloodgroup.Text,
+                       HelperClass.imageConverter(pictureBox1),
+                           3);
+                    if (res == true)
+                    {
+                        //display message of adding doctor in database
+                        MessageBox.Show("Success to Delete Doctor");
+                        dgvdoctorsdetails.DataSource = dc.GetAllDoctors();
+                        HelperClass.makeFieldsBlank(grpContainer);
+                        pictureBox1.Image = null;
+                    }
+                    else
+                    {
+                        //display error message as data cannot be stored
+                        MessageBox.Show("Couldn't Delete selected doctor");
+                        dgvdoctorsdetails.DataSource = dc.GetAllDoctors();
+                        HelperClass.makeFieldsBlank(grpContainer);
+                        pictureBox1.Image = null;
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    //display error message as data cannot be stored
-                    MessageBox.Show("Couldn't Delete selected doctor");
-                    dgvdoctorsdetails.DataSource = dc.GetAllDoctors();
-                    HelperClass.makeFieldsBlank(grpContainer);
-                    pictureBox1.Image = null;
+                    MessageBox.Show(ex.Message);
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
             }
         }
-
 
         private void Doctors_Load(object sender, EventArgs e)
         {

@@ -194,41 +194,43 @@ namespace Hospital_Management_System
         private void Btndelete_Click(object sender, EventArgs e)
         {
             DialogResult dr = MessageBox.Show("Are you surely want to delete?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            try
+            if (dr == DialogResult.Yes)
             {
-                bool res = blc.SaleTable(SaleId,
-                   Convert.ToInt32(txtvisitorno.Text),
-                   cmbpatientname.Text,
-                   cmbdoctorname.Text,
-                   txtreferredmedicines.Text,
-                   Convert.ToDouble(txtsalesprice.Text),
-                   Convert.ToInt32(txtquantity.Text),
-                   Convert.ToDouble(txttotalprice.Text),
-                   Convert.ToDouble(txtdiscount.Text),
-                   Convert.ToDouble(txtgrandtotal.Text),
-                       3);
-                if (res == true)
+                try
                 {
-                    //display message of adding memeber in database
-                    MessageBox.Show("Success to Delete Sale");
-                    dgvsalesdetails.DataSource = sc.GetAllSales();
-                    HelperClass.makeFieldsBlank(grpContainer);
-                    
+                    bool res = blc.SaleTable(SaleId,
+                       Convert.ToInt32(txtvisitorno.Text),
+                       cmbpatientname.Text,
+                       cmbdoctorname.Text,
+                       txtreferredmedicines.Text,
+                       Convert.ToDouble(txtsalesprice.Text),
+                       Convert.ToInt32(txtquantity.Text),
+                       Convert.ToDouble(txttotalprice.Text),
+                       Convert.ToDouble(txtdiscount.Text),
+                       Convert.ToDouble(txtgrandtotal.Text),
+                           3);
+                    if (res == true)
+                    {
+                        //display message of adding memeber in database
+                        MessageBox.Show("Success to Delete Sale");
+                        dgvsalesdetails.DataSource = sc.GetAllSales();
+                        HelperClass.makeFieldsBlank(grpContainer);
+
+                    }
+                    else
+                    {
+                        //display error message as data cannot be stored
+                        MessageBox.Show("Couldn't Delete selected sale");
+                        dgvsalesdetails.DataSource = sc.GetAllSales();
+                        HelperClass.makeFieldsBlank(grpContainer);
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    //display error message as data cannot be stored
-                    MessageBox.Show("Couldn't Delete selected sale");
-                    dgvsalesdetails.DataSource = sc.GetAllSales();
-                    HelperClass.makeFieldsBlank(grpContainer);
+                    MessageBox.Show(ex.Message);
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
             }
         }
-
 
         private void Sales_Load(object sender, EventArgs e)
         {

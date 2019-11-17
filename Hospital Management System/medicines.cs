@@ -153,39 +153,41 @@ namespace Hospital_Management_System
         private void Btndelete_Click(object sender, EventArgs e)
         {
             DialogResult dr = MessageBox.Show("Are you surely want to delete?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            try
+            if (dr == DialogResult.Yes)
             {
-                bool res = blc.MedicinesTable(MedicineId,
-                   Convert.ToInt32(txtvisitorno.Text),
-                   cmbpatientname.Text,
-                   cmbdoctorname.Text,
-                   txtreferredmedicines.Text,
-                   Convert.ToDateTime(dtpmfgdate.Text),
-                   Convert.ToDateTime(dtpexpireddate.Text),
-                   txtsuppliername.Text,
-                   txtcompanyname.Text,
-                       3);
-                if (res == true)
+                try
                 {
-                    //display message of adding memeber in database
-                    MessageBox.Show("Success to delete Medicine");
-                    dgvmedicinesdetails.DataSource = mc.GetAllmedicines();
-                    HelperClass.makeFieldsBlank(grpContainer);
+                    bool res = blc.MedicinesTable(MedicineId,
+                       Convert.ToInt32(txtvisitorno.Text),
+                       cmbpatientname.Text,
+                       cmbdoctorname.Text,
+                       txtreferredmedicines.Text,
+                       Convert.ToDateTime(dtpmfgdate.Text),
+                       Convert.ToDateTime(dtpexpireddate.Text),
+                       txtsuppliername.Text,
+                       txtcompanyname.Text,
+                           3);
+                    if (res == true)
+                    {
+                        //display message of adding memeber in database
+                        MessageBox.Show("Success to delete Medicine");
+                        dgvmedicinesdetails.DataSource = mc.GetAllmedicines();
+                        HelperClass.makeFieldsBlank(grpContainer);
+                    }
+                    else
+                    {
+                        //display error message as data cannot be stored
+                        MessageBox.Show("Couldn't delete selected medicine");
+                        dgvmedicinesdetails.DataSource = mc.GetAllmedicines();
+                        HelperClass.makeFieldsBlank(grpContainer);
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    //display error message as data cannot be stored
-                    MessageBox.Show("Couldn't delete selected medicine");
-                    dgvmedicinesdetails.DataSource = mc.GetAllmedicines();
-                    HelperClass.makeFieldsBlank(grpContainer);
+                    MessageBox.Show(ex.Message);
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
             }
         }
-
         private void Medicines_Load(object sender, EventArgs e)
         {
             dgvmedicinesdetails.DataSource = mc.GetAllmedicines();

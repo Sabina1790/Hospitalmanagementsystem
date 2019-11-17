@@ -77,7 +77,7 @@ namespace Hospital_Management_System
             {
                 bool res = blc.CabinTable(0,
                    Convert.ToInt32(txtcabinno.Text),
-                   Convert.ToInt32(txtcabinno.Text),
+                   Convert.ToInt32(txtroomno.Text),
                    cmbcabintype.Text,
                    txtdoctoravailable.Text,
                    txtstaffavailable.Text,
@@ -136,7 +136,7 @@ namespace Hospital_Management_System
             {
                 bool res = blc.CabinTable(CabinId,
                    Convert.ToInt32(txtcabinno.Text),
-                   Convert.ToInt32(txtcabinno.Text),
+                   Convert.ToInt32(txtroomno.Text),
                    cmbcabintype.Text,
                    txtdoctoravailable.Text,
                    txtstaffavailable.Text,
@@ -165,39 +165,51 @@ namespace Hospital_Management_System
         private void Btndelete_Click(object sender, EventArgs e)
         {
             DialogResult dr = MessageBox.Show("Are you surely want to delete?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            //try catch exception
-            try
+            if (dr == DialogResult.Yes)
+
             {
-                bool res = blc.CabinTable(CabinId,
-                   Convert.ToInt32(txtcabinno.Text),
-                   Convert.ToInt32(txtcabinno.Text),
-                   cmbcabintype.Text,
-                   txtdoctoravailable.Text,
-                   txtstaffavailable.Text,
-                       3);
-                if (res == true)
+                //try catch exception
+                try
                 {
-                   
-                    //display message of adding cabin in database
-                    MessageBox.Show("Success to Delete Cabin");
-                    dgvcabindetails.DataSource = cc.GetAllCabins();
-                    HelperClass.makeFieldsBlank(grpContainer);
+                    bool res = blc.CabinTable(CabinId,
+                       Convert.ToInt32(txtcabinno.Text),
+                       Convert.ToInt32(txtroomno.Text),
+                       cmbcabintype.Text,
+                       txtdoctoravailable.Text,
+                       txtstaffavailable.Text,
+                           3);
+
+                    if (res == true)
+                    {
+                        
+
+                            //display message of adding cabin in database
+                            MessageBox.Show("Success to Delete Cabin");
+                        dgvcabindetails.DataSource = cc.GetAllCabins();
+                        HelperClass.makeFieldsBlank(grpContainer);
+                    }
+                    else
+                    {
+                        //display error message as data cannot be stored
+                        MessageBox.Show("Couldn't Delete selected Cabin");
+                        dgvcabindetails.DataSource = cc.GetAllCabins();
+                        HelperClass.makeFieldsBlank(grpContainer);
+                    }
+                    
                 }
-                else
+                catch (Exception ex)
                 {
-                    //display error message as data cannot be stored
-                    MessageBox.Show("Couldn't Delete selected Cabin");
-                    dgvcabindetails.DataSource = cc.GetAllCabins();
-                    HelperClass.makeFieldsBlank(grpContainer);
+                    MessageBox.Show(ex.Message);
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
             }
         }
 
-        private void Dgvcabindetails_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void Btnclose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void dgvcabindetails_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
@@ -213,11 +225,6 @@ namespace Hospital_Management_System
 
                 MessageBox.Show(ex.Message);
             }
-        }
-
-        private void Btnclose_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
     }
 }

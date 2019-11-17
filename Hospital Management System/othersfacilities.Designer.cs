@@ -117,7 +117,7 @@
             this.dgvothers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvothers.Size = new System.Drawing.Size(747, 113);
             this.dgvothers.TabIndex = 35;
-            this.dgvothers.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvothers_CellContentClick);
+            this.dgvothers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvothers_CellClick);
             // 
             // btnclose
             // 

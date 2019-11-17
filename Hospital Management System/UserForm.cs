@@ -150,27 +150,30 @@ namespace Hospital_Management_System
         private void Btndelete_Click(object sender, EventArgs e)
         {
             DialogResult dr = MessageBox.Show("Are you surely want to delete?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            try
+            if (dr == DialogResult.Yes)
             {
-                bool res = blc.UserTable(UserId,
-                   txtusername.Text,
-                   txtpassword.Text,
-                   cmbrole.Text,
-                       3);
-                if (res == true)
+                try
                 {
-                    MessageBox.Show("Success to delete User");
-                    dgvuserdetails.DataSource = uc.GetAllUsers();
-                    HelperClass.makeFieldsBlank(grpContainer);
+                    bool res = blc.UserTable(UserId,
+                       txtusername.Text,
+                       txtpassword.Text,
+                       cmbrole.Text,
+                           3);
+                    if (res == true)
+                    {
+                        MessageBox.Show("Success to delete User");
+                        dgvuserdetails.DataSource = uc.GetAllUsers();
+                        HelperClass.makeFieldsBlank(grpContainer);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Couldn't delete selected user");
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Couldn't delete selected user");
+                    MessageBox.Show(ex.Message);
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
             }
         }
 

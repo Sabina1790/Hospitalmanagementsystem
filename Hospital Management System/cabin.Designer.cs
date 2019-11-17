@@ -125,7 +125,7 @@
             this.dgvcabindetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvcabindetails.Size = new System.Drawing.Size(609, 157);
             this.dgvcabindetails.TabIndex = 35;
-            this.dgvcabindetails.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dgvcabindetails_CellContentClick);
+            this.dgvcabindetails.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvcabindetails_CellClick);
             // 
             // btnclose
             // 

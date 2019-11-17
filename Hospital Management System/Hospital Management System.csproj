@@ -126,6 +126,12 @@
     <Compile Include="search.Designer.cs">
       <DependentUpon>search.cs</DependentUpon>
     </Compile>
+    <Compile Include="Snap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Snap.Designer.cs">
+      <DependentUpon>Snap.cs</DependentUpon>
+    </Compile>
     <Compile Include="staff.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -146,6 +152,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="search.resx">
       <DependentUpon>search.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Snap.resx">
+      <DependentUpon>Snap.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="staff.resx">
       <DependentUpon>staff.cs</DependentUpon>
@@ -219,6 +228,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

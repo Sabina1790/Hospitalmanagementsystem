@@ -131,41 +131,50 @@ namespace Hospital_Management_System
         private void btndelete_Click(object sender, EventArgs e)
         {
             DialogResult dr = MessageBox.Show("Are you surely want to delete?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            try
+            if (dr == DialogResult.Yes)
             {
-                bool res = blc.Others(Id,
-                    txtambulancedriver.Text,
-                   Convert.ToInt32(txtcontact.Text),
-                   Convert.ToInt32(txtdoctorfee.Text),
-                   Convert.ToInt32(txtstafffee.Text),
-                   Convert.ToDateTime(dtpdate.Text),
-                       3);
-                if (res == true)
+                try
                 {
-                    //display message of successfully deleted
-                    MessageBox.Show("Success to Delete others information");
-                    dgvothers.DataSource = o.GetAllOthers();
-                    HelperClass.makeFieldsBlank(grpContainer);
+                    bool res = blc.Others(Id,
+                        txtambulancedriver.Text,
+                       Convert.ToInt32(txtcontact.Text),
+                       Convert.ToInt32(txtdoctorfee.Text),
+                       Convert.ToInt32(txtstafffee.Text),
+                       Convert.ToDateTime(dtpdate.Text),
+                           3);
+                    if (res == true)
+                    {
+                        //display message of successfully deleted
+                        MessageBox.Show("Success to Delete others information");
+                        dgvothers.DataSource = o.GetAllOthers();
+                        HelperClass.makeFieldsBlank(grpContainer);
+                    }
+                    else
+                    {
+                        //display error message as data cannot be deleted
+                        MessageBox.Show("Couldn't Delete selected Others information");
+                        dgvothers.DataSource = o.GetAllOthers();
+                        HelperClass.makeFieldsBlank(grpContainer);
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    //display error message as data cannot be deleted
-                    MessageBox.Show("Couldn't Delete selected Others information");
-                    dgvothers.DataSource = o.GetAllOthers();
-                    HelperClass.makeFieldsBlank(grpContainer);
+                    MessageBox.Show(ex.Message);
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
             }
         }
 
-        private void dgvothers_CellContentClick(object sender, DataGridViewCellEventArgs e)
+
+        private void btnclose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void dgvothers_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
-                Id = Convert.ToInt32(dgvothers.SelectedRows[0].Cells["PatientId"].Value.ToString());
+                Id = Convert.ToInt32(dgvothers.SelectedRows[0].Cells["Id"].Value.ToString());
                 txtambulancedriver.Text = dgvothers.SelectedRows[0].Cells["AmbulanceDriver"].Value.ToString();
                 txtcontact.Text = dgvothers.SelectedRows[0].Cells["Contact"].Value.ToString();
                 txtdoctorfee.Text = dgvothers.SelectedRows[0].Cells["DoctorsFee"].Value.ToString();
@@ -177,11 +186,7 @@ namespace Hospital_Management_System
 
                 MessageBox.Show(ex.Message);
             }
-        }
 
-        private void btnclose_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
     }
 }
