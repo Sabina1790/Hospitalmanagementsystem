@@ -79,9 +79,9 @@ namespace Hospital_Management_System
                 MessageBox.Show("Provide Image: Full information required");
                 return;
             }
-            else if (DublicateDoctor() == true)
+            else if (DublicateDoctorNo() == true)
             {
-                MessageBox.Show("Doctor with same name already exists");
+                MessageBox.Show("Doctor with same numver already exists");
                 txtfirstname.Clear();
                 txtfirstname.Focus();
                 return;
@@ -111,7 +111,7 @@ namespace Hospital_Management_System
                 if (res == true)
                 {
                     //display message of adding doctor in database
-                    MessageBox.Show("Success to Add Doctor");
+                    MessageBox.Show("Success to Add Doctor's Information");
                     dgvdoctorsdetails.DataSource = dc.GetAllDoctors();
                     HelperClass.makeFieldsBlank(grpContainer);
                     pictureBox1.Image = null;
@@ -119,7 +119,7 @@ namespace Hospital_Management_System
                 else
                 {
                     //display error message as data cannot be stored
-                    MessageBox.Show("Couldn't Add selected doctor");
+                    MessageBox.Show("Couldn't Add selected doctor's Information");
                     dgvdoctorsdetails.DataSource = dc.GetAllDoctors();
                     HelperClass.makeFieldsBlank(grpContainer);
                     pictureBox1.Image = null;
@@ -133,7 +133,7 @@ namespace Hospital_Management_System
 
 
         //helps in data store as if doctors have same information
-        public bool DublicateDoctor()
+        public bool DublicateDoctorNo()
         {
             int x = 0;
             try
@@ -141,7 +141,7 @@ namespace Hospital_Management_System
 
                 for (int i = 0; i < dgvdoctorsdetails.Rows.Count; i++)
                 {
-                    if (txtfirstname.Text == dgvdoctorsdetails.Rows[i].Cells["FirstName"].Value.ToString())
+                    if (txtreferringno.Text == dgvdoctorsdetails.Rows[i].Cells["ReferringNo"].Value.ToString())
                         x = 1;
                 }
 
@@ -211,7 +211,7 @@ namespace Hospital_Management_System
                 if (res == true)
                 {
                     //display message of adding doctor in database
-                    MessageBox.Show("Success to Update Doctor");
+                    MessageBox.Show("Success to Update Doctor's Information");
                     dgvdoctorsdetails.DataSource = dc.GetAllDoctors();
                     HelperClass.makeFieldsBlank(grpContainer);
                     pictureBox1.Image = null;
@@ -219,7 +219,7 @@ namespace Hospital_Management_System
                 else
                 {
                     //display error message as data cannot be stored
-                    MessageBox.Show("Couldn't Update selected doctor");
+                    MessageBox.Show("Couldn't Update Selected Information");
                     dgvdoctorsdetails.DataSource = dc.GetAllDoctors();
                     HelperClass.makeFieldsBlank(grpContainer);
                     pictureBox1.Image = null;
@@ -255,7 +255,7 @@ namespace Hospital_Management_System
                     if (res == true)
                     {
                         //display message of adding doctor in database
-                        MessageBox.Show("Success to Delete Doctor");
+                        MessageBox.Show("Success to Delete Doctor's Information");
                         dgvdoctorsdetails.DataSource = dc.GetAllDoctors();
                         HelperClass.makeFieldsBlank(grpContainer);
                         pictureBox1.Image = null;
@@ -263,7 +263,7 @@ namespace Hospital_Management_System
                     else
                     {
                         //display error message as data cannot be stored
-                        MessageBox.Show("Couldn't Delete selected doctor");
+                        MessageBox.Show("Couldn't Delete Selected Doctor's Information");
                         dgvdoctorsdetails.DataSource = dc.GetAllDoctors();
                         HelperClass.makeFieldsBlank(grpContainer);
                         pictureBox1.Image = null;
@@ -309,6 +309,11 @@ namespace Hospital_Management_System
 
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

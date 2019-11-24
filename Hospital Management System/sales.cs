@@ -31,6 +31,8 @@ namespace Hospital_Management_System
         SaleClass sc = new SaleClass();
         public int SaleId;
 
+        
+
         private void Btnadd_Click(object sender, EventArgs e)
         {
             //Get Product Name, Rate and Qty customer wants to buy
@@ -126,6 +128,9 @@ namespace Hospital_Management_System
             {
                 MessageBox.Show(ex.Message);
             }
+
+            txtvisitorno.Clear();
+            txtreferredmedicines.Clear();
         }
 
 
@@ -246,12 +251,15 @@ namespace Hospital_Management_System
 
         }
 
+        
+
         private void Btnclose_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-              
+        
+
         /// <summary>
         /// get data of visitorno
         /// </summary>
@@ -395,6 +403,7 @@ namespace Hospital_Management_System
 
                 MessageBox.Show(ex.Message);
             }
+
         }
     }
 }

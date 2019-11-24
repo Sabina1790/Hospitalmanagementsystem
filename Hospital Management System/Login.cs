@@ -34,14 +34,29 @@ namespace Hospital_Management_System
                 if (Role == "Admin")
                 {
                     dashboard db = new dashboard();
+                    db.menuPatient.Enabled = true;
+                    db.menuDoctors.Enabled = true;
+                    db.menuMedicines.Enabled = true;
+                    db.menucabin.Enabled = true;
+                    db.menuStaff.Enabled = true;
+                    db.menuOthers.Enabled = true;
+                    db.menuSales.Enabled = true;
+                    db.menuSearch.Enabled = true;
+                    db.btnsignin.Enabled = true;
                     db.Show();
                 }
                 else if (Role == "User")
                 {
                     dashboard db = new dashboard();
-                    //frm.btnUsers.Enabled = false;
-                    //frm.btnProduct.Enabled = false;
-                    //frm.btnCategory.Enabled = false;
+                    db.menuPatient.Enabled = false;
+                    db.menuDoctors.Enabled = false;
+                    db.menuMedicines.Enabled = true;
+                    db.menucabin.Enabled = false;
+                    db.menuStaff.Enabled = false;
+                    db.menuOthers.Enabled = false;
+                    db.menuSales.Enabled = true;
+                    db.menuSearch.Enabled = true;
+                    db.btnsignin.Enabled = false;
                     db.Show();
                 }
                 else

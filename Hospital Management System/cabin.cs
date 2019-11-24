@@ -24,11 +24,22 @@ namespace Hospital_Management_System
         BusinessLogicLayer blc = new BusinessLogicLayer();
         CabinClass cc = new CabinClass();
         HelperClass hc = new HelperClass();
+        DoctorClass dc = new DoctorClass();
+        StaffClass sc = new StaffClass();
+
         public int CabinId;
 
         private void Cabin_Load(object sender, System.EventArgs e)
         {
             dgvcabindetails.DataSource = cc.GetAllCabins();
+            cmbdoctorname.DataSource = dc.GetAllDoctors();
+            cmbdoctorname.DisplayMember = "FirstName";
+            cmbdoctorname.ValueMember = "FirstName";
+            cmbdoctorname.SelectedValue = -1;
+            cmbstaffname.DataSource = sc.GetAllStaffs();
+            cmbstaffname.DisplayMember = "StaffName";
+            cmbstaffname.ValueMember = "StaffName";
+            cmbstaffname.SelectedValue = -1;
         }
 
         private void Btnadd_Click(object sender, EventArgs e)
@@ -49,19 +60,19 @@ namespace Hospital_Management_System
                 MessageBox.Show("Provide Category: Full information required");
                 return;
             }
-           else if (txtdoctoravailable.Text == "")
+           else if (cmbdoctorname.Text == "")
             {
-                MessageBox.Show("Provide Ward No: Full information required");
+                MessageBox.Show("Provide Doctor's Name: Full information required");
                 return;
             }
-           else if (txtstaffavailable.Text == "")
+           else if (cmbstaffname.Text == "")
             {
-                MessageBox.Show("Provide Qualification: Full information required");
+                MessageBox.Show("Provide Staff's Name: Full information required");
                 return;
             }
              else if (DublicateCabin() == true)
             {
-                MessageBox.Show("cabin with same name already exists");
+                MessageBox.Show("cabin with same number already exists");
                 txtcabinno.Clear();
                 txtcabinno.Focus();
                 return;
@@ -79,8 +90,8 @@ namespace Hospital_Management_System
                    Convert.ToInt32(txtcabinno.Text),
                    Convert.ToInt32(txtroomno.Text),
                    cmbcabintype.Text,
-                   txtdoctoravailable.Text,
-                   txtstaffavailable.Text,
+                   cmbdoctorname.Text,
+                   cmbstaffname.Text,
                        1);
                 if (res == true)
                 {
@@ -138,8 +149,8 @@ namespace Hospital_Management_System
                    Convert.ToInt32(txtcabinno.Text),
                    Convert.ToInt32(txtroomno.Text),
                    cmbcabintype.Text,
-                   txtdoctoravailable.Text,
-                   txtstaffavailable.Text,
+                   cmbdoctorname.Text,
+                   cmbstaffname.Text,
                        2);
                 if (res == true)
                 {
@@ -173,10 +184,10 @@ namespace Hospital_Management_System
                 {
                     bool res = blc.CabinTable(CabinId,
                        Convert.ToInt32(txtcabinno.Text),
-                       Convert.ToInt32(txtroomno.Text),
-                       cmbcabintype.Text,
-                       txtdoctoravailable.Text,
-                       txtstaffavailable.Text,
+                   Convert.ToInt32(txtroomno.Text),
+                   cmbcabintype.Text,
+                   cmbdoctorname.Text,
+                   cmbstaffname.Text,
                            3);
 
                     if (res == true)
@@ -217,8 +228,8 @@ namespace Hospital_Management_System
                 txtcabinno.Text = dgvcabindetails.SelectedRows[0].Cells["CabinNo"].Value.ToString();
                 txtroomno.Text = dgvcabindetails.SelectedRows[0].Cells["RoomNo"].Value.ToString();
                 cmbcabintype.Text = dgvcabindetails.SelectedRows[0].Cells["CabinType"].Value.ToString();
-                txtdoctoravailable.Text = dgvcabindetails.SelectedRows[0].Cells["Doctor"].Value.ToString();
-                txtstaffavailable.Text = dgvcabindetails.SelectedRows[0].Cells["Staff"].Value.ToString();
+                cmbdoctorname.Text = dgvcabindetails.SelectedRows[0].Cells["Doctor"].Value.ToString();
+                cmbstaffname.Text = dgvcabindetails.SelectedRows[0].Cells["Staff"].Value.ToString();
             }
             catch (Exception ex)
             {

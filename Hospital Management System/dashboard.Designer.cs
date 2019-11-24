@@ -30,18 +30,19 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dashboard));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnsignin = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.paToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.patientsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.doctorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.medicinesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cabinToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.staffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.othersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.salesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.billingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuHome = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuPatient = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuDoctors = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuMedicines = new System.Windows.Forms.ToolStripMenuItem();
+            this.menucabin = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStaff = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuOthers = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuSales = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuSearch = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -51,6 +52,8 @@
             this.panel1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.btnsignin);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.menuStrip1);
             this.panel1.Location = new System.Drawing.Point(2, 1);
@@ -58,102 +61,119 @@
             this.panel1.Size = new System.Drawing.Size(1363, 747);
             this.panel1.TabIndex = 0;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(98, 642);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(140, 19);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "New User? Sign in:";
+            // 
+            // btnsignin
+            // 
+            this.btnsignin.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnsignin.Location = new System.Drawing.Point(257, 638);
+            this.btnsignin.Name = "btnsignin";
+            this.btnsignin.Size = new System.Drawing.Size(102, 33);
+            this.btnsignin.TabIndex = 12;
+            this.btnsignin.Text = "SIGN IN ";
+            this.btnsignin.UseVisualStyleBackColor = true;
+            this.btnsignin.Click += new System.EventHandler(this.btnsignin_Click);
+            // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(1282, 0);
+            this.button1.BackColor = System.Drawing.Color.Transparent;
+            this.button1.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(1233, 642);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(115, 29);
             this.button1.TabIndex = 11;
             this.button1.Text = "Log Out";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.paToolStripMenuItem,
-            this.patientsToolStripMenuItem,
-            this.doctorsToolStripMenuItem,
-            this.medicinesToolStripMenuItem,
-            this.cabinToolStripMenuItem,
-            this.staffToolStripMenuItem,
-            this.othersToolStripMenuItem,
-            this.salesToolStripMenuItem,
-            this.billingToolStripMenuItem,
-            this.searchToolStripMenuItem});
+            this.menuHome,
+            this.menuPatient,
+            this.menuDoctors,
+            this.menuMedicines,
+            this.menucabin,
+            this.menuStaff,
+            this.menuOthers,
+            this.menuSales,
+            this.menuSearch});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1363, 24);
             this.menuStrip1.TabIndex = 10;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // paToolStripMenuItem
+            // menuHome
             // 
-            this.paToolStripMenuItem.Name = "paToolStripMenuItem";
-            this.paToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
-            this.paToolStripMenuItem.Text = "Home";
+            this.menuHome.Name = "menuHome";
+            this.menuHome.Size = new System.Drawing.Size(52, 20);
+            this.menuHome.Text = "Home";
+            this.menuHome.Click += new System.EventHandler(this.menuHome_Click);
             // 
-            // patientsToolStripMenuItem
+            // menuPatient
             // 
-            this.patientsToolStripMenuItem.Name = "patientsToolStripMenuItem";
-            this.patientsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
-            this.patientsToolStripMenuItem.Text = "Patients";
-            this.patientsToolStripMenuItem.Click += new System.EventHandler(this.PatientsToolStripMenuItem_Click);
+            this.menuPatient.Name = "menuPatient";
+            this.menuPatient.Size = new System.Drawing.Size(61, 20);
+            this.menuPatient.Text = "Patients";
+            this.menuPatient.Click += new System.EventHandler(this.PatientsToolStripMenuItem_Click);
             // 
-            // doctorsToolStripMenuItem
+            // menuDoctors
             // 
-            this.doctorsToolStripMenuItem.Name = "doctorsToolStripMenuItem";
-            this.doctorsToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
-            this.doctorsToolStripMenuItem.Text = "Doctors";
-            this.doctorsToolStripMenuItem.Click += new System.EventHandler(this.DoctorsToolStripMenuItem_Click);
+            this.menuDoctors.Name = "menuDoctors";
+            this.menuDoctors.Size = new System.Drawing.Size(60, 20);
+            this.menuDoctors.Text = "Doctors";
+            this.menuDoctors.Click += new System.EventHandler(this.DoctorsToolStripMenuItem_Click);
             // 
-            // medicinesToolStripMenuItem
+            // menuMedicines
             // 
-            this.medicinesToolStripMenuItem.Name = "medicinesToolStripMenuItem";
-            this.medicinesToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
-            this.medicinesToolStripMenuItem.Text = "Medicines";
-            this.medicinesToolStripMenuItem.Click += new System.EventHandler(this.MedicinesToolStripMenuItem_Click);
+            this.menuMedicines.Name = "menuMedicines";
+            this.menuMedicines.Size = new System.Drawing.Size(73, 20);
+            this.menuMedicines.Text = "Medicines";
+            this.menuMedicines.Click += new System.EventHandler(this.MedicinesToolStripMenuItem_Click);
             // 
-            // cabinToolStripMenuItem
+            // menucabin
             // 
-            this.cabinToolStripMenuItem.Name = "cabinToolStripMenuItem";
-            this.cabinToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
-            this.cabinToolStripMenuItem.Text = "Cabin";
-            this.cabinToolStripMenuItem.Click += new System.EventHandler(this.CabinToolStripMenuItem_Click);
+            this.menucabin.Name = "menucabin";
+            this.menucabin.Size = new System.Drawing.Size(50, 20);
+            this.menucabin.Text = "Cabin";
+            this.menucabin.Click += new System.EventHandler(this.CabinToolStripMenuItem_Click);
             // 
-            // staffToolStripMenuItem
+            // menuStaff
             // 
-            this.staffToolStripMenuItem.Name = "staffToolStripMenuItem";
-            this.staffToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
-            this.staffToolStripMenuItem.Text = "Staff";
-            this.staffToolStripMenuItem.Click += new System.EventHandler(this.StaffToolStripMenuItem_Click);
+            this.menuStaff.Name = "menuStaff";
+            this.menuStaff.Size = new System.Drawing.Size(43, 20);
+            this.menuStaff.Text = "Staff";
+            this.menuStaff.Click += new System.EventHandler(this.StaffToolStripMenuItem_Click);
             // 
-            // othersToolStripMenuItem
+            // menuOthers
             // 
-            this.othersToolStripMenuItem.Name = "othersToolStripMenuItem";
-            this.othersToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
-            this.othersToolStripMenuItem.Text = "Others";
-            this.othersToolStripMenuItem.Click += new System.EventHandler(this.othersToolStripMenuItem_Click);
+            this.menuOthers.Name = "menuOthers";
+            this.menuOthers.Size = new System.Drawing.Size(54, 20);
+            this.menuOthers.Text = "Others";
+            this.menuOthers.Click += new System.EventHandler(this.othersToolStripMenuItem_Click);
             // 
-            // salesToolStripMenuItem
+            // menuSales
             // 
-            this.salesToolStripMenuItem.Name = "salesToolStripMenuItem";
-            this.salesToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
-            this.salesToolStripMenuItem.Text = "Sales";
-            this.salesToolStripMenuItem.Click += new System.EventHandler(this.SalesToolStripMenuItem_Click);
+            this.menuSales.Name = "menuSales";
+            this.menuSales.Size = new System.Drawing.Size(45, 20);
+            this.menuSales.Text = "Sales";
+            this.menuSales.Click += new System.EventHandler(this.SalesToolStripMenuItem_Click);
             // 
-            // billingToolStripMenuItem
+            // menuSearch
             // 
-            this.billingToolStripMenuItem.Name = "billingToolStripMenuItem";
-            this.billingToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
-            this.billingToolStripMenuItem.Text = "Billing";
-            this.billingToolStripMenuItem.Click += new System.EventHandler(this.BillingToolStripMenuItem_Click);
-            // 
-            // searchToolStripMenuItem
-            // 
-            this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
-            this.searchToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
-            this.searchToolStripMenuItem.Text = "Search";
+            this.menuSearch.Name = "menuSearch";
+            this.menuSearch.Size = new System.Drawing.Size(54, 20);
+            this.menuSearch.Text = "Search";
+            this.menuSearch.Click += new System.EventHandler(this.searchToolStripMenuItem_Click);
             // 
             // dashboard
             // 
@@ -178,16 +198,17 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem paToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem patientsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem doctorsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem medicinesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem salesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem cabinToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem staffToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem billingToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem searchToolStripMenuItem;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ToolStripMenuItem othersToolStripMenuItem;
+        private System.Windows.Forms.Label label3;
+        public System.Windows.Forms.ToolStripMenuItem menuPatient;
+        public System.Windows.Forms.ToolStripMenuItem menuDoctors;
+        public System.Windows.Forms.ToolStripMenuItem menuHome;
+        public System.Windows.Forms.ToolStripMenuItem menuMedicines;
+        public System.Windows.Forms.ToolStripMenuItem menucabin;
+        public System.Windows.Forms.ToolStripMenuItem menuStaff;
+        public System.Windows.Forms.ToolStripMenuItem menuOthers;
+        public System.Windows.Forms.ToolStripMenuItem menuSales;
+        public System.Windows.Forms.ToolStripMenuItem menuSearch;
+        public System.Windows.Forms.Button btnsignin;
     }
 }

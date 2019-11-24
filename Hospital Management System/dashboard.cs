@@ -40,11 +40,6 @@ namespace Hospital_Management_System
             sta.Show();
         }
 
-        private void BillingToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            billing bil = new billing();
-            bil.Show();
-        }
 
         private void MedicinesToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -66,6 +61,25 @@ namespace Hospital_Management_System
         private void dashboard_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void searchToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            search s = new search();
+            s.Show();
+        }
+
+
+        private void btnsignin_Click(object sender, EventArgs e)
+        {
+            UserForm uf = new UserForm();
+            uf.Show();
+        }
+
+        private void menuHome_Click(object sender, EventArgs e)
+        {
+            home h = new home();
+            h.Show();
         }
     }
 }

@@ -123,9 +123,12 @@
             // 
             // dgvpatientsdetails
             // 
+            this.dgvpatientsdetails.AllowUserToAddRows = false;
+            this.dgvpatientsdetails.AllowUserToDeleteRows = false;
             this.dgvpatientsdetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvpatientsdetails.Location = new System.Drawing.Point(19, 228);
             this.dgvpatientsdetails.Name = "dgvpatientsdetails";
+            this.dgvpatientsdetails.ReadOnly = true;
             this.dgvpatientsdetails.Size = new System.Drawing.Size(1159, 161);
             this.dgvpatientsdetails.TabIndex = 35;
             this.dgvpatientsdetails.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvpatientsdetails_CellClick);

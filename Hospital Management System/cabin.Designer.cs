@@ -32,13 +32,11 @@
             this.grpContainer = new System.Windows.Forms.GroupBox();
             this.cmbcabintype = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.txtdoctoravailable = new System.Windows.Forms.TextBox();
             this.dgvcabindetails = new System.Windows.Forms.DataGridView();
             this.btnclose = new System.Windows.Forms.Button();
             this.btndelete = new System.Windows.Forms.Button();
             this.btnupdate = new System.Windows.Forms.Button();
             this.btnadd = new System.Windows.Forms.Button();
-            this.txtstaffavailable = new System.Windows.Forms.TextBox();
             this.txtroomno = new System.Windows.Forms.TextBox();
             this.txtcabinno = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -46,6 +44,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cmbstaffname = new System.Windows.Forms.ComboBox();
+            this.cmbdoctorname = new System.Windows.Forms.ComboBox();
             this.grpContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvcabindetails)).BeginInit();
             this.panel1.SuspendLayout();
@@ -63,15 +63,15 @@
             // 
             // grpContainer
             // 
+            this.grpContainer.Controls.Add(this.cmbdoctorname);
+            this.grpContainer.Controls.Add(this.cmbstaffname);
             this.grpContainer.Controls.Add(this.cmbcabintype);
             this.grpContainer.Controls.Add(this.label7);
-            this.grpContainer.Controls.Add(this.txtdoctoravailable);
             this.grpContainer.Controls.Add(this.dgvcabindetails);
             this.grpContainer.Controls.Add(this.btnclose);
             this.grpContainer.Controls.Add(this.btndelete);
             this.grpContainer.Controls.Add(this.btnupdate);
             this.grpContainer.Controls.Add(this.btnadd);
-            this.grpContainer.Controls.Add(this.txtstaffavailable);
             this.grpContainer.Controls.Add(this.txtroomno);
             this.grpContainer.Controls.Add(this.txtcabinno);
             this.grpContainer.Controls.Add(this.label9);
@@ -107,13 +107,6 @@
             this.label7.Size = new System.Drawing.Size(106, 16);
             this.label7.TabIndex = 39;
             this.label7.Text = "Doctor Available:";
-            // 
-            // txtdoctoravailable
-            // 
-            this.txtdoctoravailable.Location = new System.Drawing.Point(495, 66);
-            this.txtdoctoravailable.Name = "txtdoctoravailable";
-            this.txtdoctoravailable.Size = new System.Drawing.Size(172, 22);
-            this.txtdoctoravailable.TabIndex = 4;
             // 
             // dgvcabindetails
             // 
@@ -166,13 +159,6 @@
             this.btnadd.Text = "ADD";
             this.btnadd.UseVisualStyleBackColor = true;
             this.btnadd.Click += new System.EventHandler(this.Btnadd_Click);
-            // 
-            // txtstaffavailable
-            // 
-            this.txtstaffavailable.Location = new System.Drawing.Point(495, 102);
-            this.txtstaffavailable.Name = "txtstaffavailable";
-            this.txtstaffavailable.Size = new System.Drawing.Size(172, 22);
-            this.txtstaffavailable.TabIndex = 5;
             // 
             // txtroomno
             // 
@@ -233,6 +219,32 @@
             this.panel1.Size = new System.Drawing.Size(1293, 608);
             this.panel1.TabIndex = 1;
             // 
+            // cmbstaffname
+            // 
+            this.cmbstaffname.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbstaffname.FormattingEnabled = true;
+            this.cmbstaffname.Items.AddRange(new object[] {
+            "High",
+            "Low",
+            "Middle"});
+            this.cmbstaffname.Location = new System.Drawing.Point(495, 102);
+            this.cmbstaffname.Name = "cmbstaffname";
+            this.cmbstaffname.Size = new System.Drawing.Size(172, 24);
+            this.cmbstaffname.TabIndex = 40;
+            // 
+            // cmbdoctorname
+            // 
+            this.cmbdoctorname.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbdoctorname.FormattingEnabled = true;
+            this.cmbdoctorname.Items.AddRange(new object[] {
+            "High",
+            "Low",
+            "Middle"});
+            this.cmbdoctorname.Location = new System.Drawing.Point(495, 69);
+            this.cmbdoctorname.Name = "cmbdoctorname";
+            this.cmbdoctorname.Size = new System.Drawing.Size(172, 24);
+            this.cmbdoctorname.TabIndex = 41;
+            // 
             // cabin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -261,7 +273,6 @@
         private System.Windows.Forms.Button btndelete;
         private System.Windows.Forms.Button btnupdate;
         private System.Windows.Forms.Button btnadd;
-        private System.Windows.Forms.TextBox txtstaffavailable;
         private System.Windows.Forms.TextBox txtroomno;
         private System.Windows.Forms.TextBox txtcabinno;
         private System.Windows.Forms.Label label9;
@@ -270,7 +281,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtdoctoravailable;
         private System.Windows.Forms.ComboBox cmbcabintype;
+        private System.Windows.Forms.ComboBox cmbdoctorname;
+        private System.Windows.Forms.ComboBox cmbstaffname;
     }
 }

@@ -89,9 +89,9 @@ namespace Hospital_Management_System
                 MessageBox.Show("Provide Image: Full information required");
                 return;
             }
-            else if (DublicatePatient() == true)
+            else if (DublicatePatientNo() == true)
             {
-                MessageBox.Show("Patient with same name already exists");
+                MessageBox.Show("Patient with same number already exists");
                 txtpatientname.Clear();
                 txtpatientname.Focus();
                 return;
@@ -143,7 +143,7 @@ namespace Hospital_Management_System
 
 
         //helps in data store as if users have same information
-        public bool DublicatePatient()
+        public bool DublicatePatientNo()
         {
             int x = 0;
             try
@@ -151,7 +151,7 @@ namespace Hospital_Management_System
 
                 for (int i = 0; i < dgvpatientsdetails.Rows.Count; i++)
                 {
-                    if (txtpatientname.Text == dgvpatientsdetails.Rows[i].Cells["PatientName"].Value.ToString())
+                    if (txtvisitorno.Text == dgvpatientsdetails.Rows[i].Cells["VisitorNo"].Value.ToString())
                         x = 1;
                 }
 

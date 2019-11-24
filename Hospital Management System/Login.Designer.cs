@@ -32,8 +32,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.btnsignin = new System.Windows.Forms.Button();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.btnclose = new System.Windows.Forms.Button();
@@ -62,8 +60,6 @@
             this.panel2.BackColor = System.Drawing.Color.Transparent;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel2.Controls.Add(this.label4);
-            this.panel2.Controls.Add(this.label3);
-            this.panel2.Controls.Add(this.btnsignin);
             this.panel2.Controls.Add(this.radioButton2);
             this.panel2.Controls.Add(this.radioButton1);
             this.panel2.Controls.Add(this.btnclose);
@@ -86,27 +82,6 @@
             this.label4.Size = new System.Drawing.Size(248, 41);
             this.label4.TabIndex = 10;
             this.label4.Text = "LOG IN FORM";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(81, 433);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(140, 19);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "New User? Sign in:";
-            // 
-            // btnsignin
-            // 
-            this.btnsignin.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnsignin.Location = new System.Drawing.Point(240, 429);
-            this.btnsignin.Name = "btnsignin";
-            this.btnsignin.Size = new System.Drawing.Size(102, 33);
-            this.btnsignin.TabIndex = 8;
-            this.btnsignin.Text = "SIGN IN ";
-            this.btnsignin.UseVisualStyleBackColor = true;
-            this.btnsignin.Click += new System.EventHandler(this.Btnsignin_Click);
             // 
             // radioButton2
             // 
@@ -135,7 +110,7 @@
             // btnclose
             // 
             this.btnclose.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnclose.Location = new System.Drawing.Point(225, 370);
+            this.btnclose.Location = new System.Drawing.Point(226, 396);
             this.btnclose.Name = "btnclose";
             this.btnclose.Size = new System.Drawing.Size(97, 30);
             this.btnclose.TabIndex = 5;
@@ -146,7 +121,7 @@
             // btnlogin
             // 
             this.btnlogin.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnlogin.Location = new System.Drawing.Point(93, 370);
+            this.btnlogin.Location = new System.Drawing.Point(94, 396);
             this.btnlogin.Name = "btnlogin";
             this.btnlogin.Size = new System.Drawing.Size(91, 30);
             this.btnlogin.TabIndex = 4;
@@ -216,8 +191,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button btnsignin;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.Button btnclose;

@@ -263,6 +263,7 @@ namespace Hospital_Management_System
 
                 MessageBox.Show(ex.Message);
             }
+            
         }
     }
 }

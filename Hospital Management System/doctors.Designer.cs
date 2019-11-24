@@ -131,9 +131,13 @@
             // 
             // dgvdoctorsdetails
             // 
+            this.dgvdoctorsdetails.AllowUserToAddRows = false;
+            this.dgvdoctorsdetails.AllowUserToDeleteRows = false;
             this.dgvdoctorsdetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvdoctorsdetails.Location = new System.Drawing.Point(18, 228);
             this.dgvdoctorsdetails.Name = "dgvdoctorsdetails";
+            this.dgvdoctorsdetails.ReadOnly = true;
+            this.dgvdoctorsdetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvdoctorsdetails.Size = new System.Drawing.Size(1123, 161);
             this.dgvdoctorsdetails.TabIndex = 34;
             this.dgvdoctorsdetails.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvdoctorsdetails_CellClick);
@@ -158,6 +162,7 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 32;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // txtreferringrate
             // 

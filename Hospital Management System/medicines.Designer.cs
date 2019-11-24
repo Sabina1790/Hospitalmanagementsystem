@@ -228,15 +228,15 @@
             // dgvmedicinesdetails
             // 
             this.dgvmedicinesdetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvmedicinesdetails.Location = new System.Drawing.Point(19, 257);
+            this.dgvmedicinesdetails.Location = new System.Drawing.Point(97, 257);
             this.dgvmedicinesdetails.Name = "dgvmedicinesdetails";
-            this.dgvmedicinesdetails.Size = new System.Drawing.Size(1159, 190);
+            this.dgvmedicinesdetails.Size = new System.Drawing.Size(950, 190);
             this.dgvmedicinesdetails.TabIndex = 35;
             this.dgvmedicinesdetails.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvmedicinesdetails_CellClick);
             // 
             // btnclose
             // 
-            this.btnclose.Location = new System.Drawing.Point(1057, 197);
+            this.btnclose.Location = new System.Drawing.Point(908, 204);
             this.btnclose.Name = "btnclose";
             this.btnclose.Size = new System.Drawing.Size(98, 25);
             this.btnclose.TabIndex = 11;
@@ -246,7 +246,7 @@
             // 
             // btndelete
             // 
-            this.btndelete.Location = new System.Drawing.Point(933, 197);
+            this.btndelete.Location = new System.Drawing.Point(784, 204);
             this.btndelete.Name = "btndelete";
             this.btndelete.Size = new System.Drawing.Size(98, 25);
             this.btndelete.TabIndex = 10;
@@ -256,7 +256,7 @@
             // 
             // btnupdate
             // 
-            this.btnupdate.Location = new System.Drawing.Point(818, 197);
+            this.btnupdate.Location = new System.Drawing.Point(669, 204);
             this.btnupdate.Name = "btnupdate";
             this.btnupdate.Size = new System.Drawing.Size(98, 25);
             this.btnupdate.TabIndex = 9;
@@ -266,7 +266,7 @@
             // 
             // btnadd
             // 
-            this.btnadd.Location = new System.Drawing.Point(701, 197);
+            this.btnadd.Location = new System.Drawing.Point(552, 204);
             this.btnadd.Name = "btnadd";
             this.btnadd.Size = new System.Drawing.Size(98, 25);
             this.btnadd.TabIndex = 8;
